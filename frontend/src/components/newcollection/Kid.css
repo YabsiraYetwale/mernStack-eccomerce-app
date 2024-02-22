@@ -1,0 +1,62 @@
+.kid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    /* background:linear-gradient(180deg,#464748,#458209,#340986) */
+}
+.kid img{
+    width:250px;
+    height:270px;
+    transition:all 3s;
+}
+.kid img:hover{
+    opacity:0.3;
+}
+.ki{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+.ki .kititle{
+    width:200px;
+    color:rgba(75, 68, 68, 0.9);
+}
+.kiprice{
+    font-weight:bolder;
+    display:flex;
+    gap:18px;
+}
+.kiold{
+    text-decoration:line-through;
+    color:rgba(131, 127, 127, 0.5);
+}
+.kids1{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+}
+.kidstitle{
+    font-size:40px;
+    font-weight:bold;
+}
+.kidshr{
+    width:180px;
+    height:4px;
+    background:#000;
+}
+.kids{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:40px;
+    padding-bottom:80px;
+}
+
+.kidsoffer img{
+    width:500px;
+    height:400px;
+    transition:all 3s;
+}

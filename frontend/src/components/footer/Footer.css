@@ -1,0 +1,53 @@
+
+.footers{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding-bottom:30px;
+}
+.footer{
+    padding-bottom:30px;
+}
+.fleft{
+    padding-top:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    gap:40px;
+}
+.flogo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+   }
+.flogo img{
+       width:60px;
+       height:40px;
+   }
+.flogo span{
+       font-size:30px;
+       font-weight:bolder;
+   }
+.fcatagory{
+       display:Flex;
+       justify-content:center;
+       align-items:center;
+       gap:40px;
+   }
+.fli{
+       text-decoration:none;
+       color:#444;
+       font-weight:bold;
+   }
+.fli:hover{
+    opacity:0.5;
+   }
+   .media{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+   }

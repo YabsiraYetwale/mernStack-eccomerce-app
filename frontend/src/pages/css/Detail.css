@@ -1,0 +1,134 @@
+.details{
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+    padding:60px 100px;
+}
+.dcat{
+    display:flex;
+    gap:100px;
+}
+.images{
+    display:flex;
+    gap:20px;
+}
+.imagesleft img{
+    display:flex;
+    flex-direction:column;
+    padding:0 0 10px 0;
+    width:90px;
+    height:110px;
+    transition:all 3s;
+}
+.imagesright img{
+    width:400px;
+    height:400px;
+    transition:all 3s;
+}
+.dcat img:hover{
+    opacity:0.3;
+}
+.dca{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction:column;
+    gap:25px;
+}
+.dca .dtitle{
+    color:rgba(75, 68, 68, 0.9);
+        font-size:40px;
+        font-weight:bolder;
+    
+}
+.description{
+    width:20px;
+    color:rgba(70, 69, 70, 0.9);
+}
+.dprice{
+    font-weight:bolder;
+    display:flex;
+    gap:18px;
+}
+.dcold{
+    text-decoration:line-through;
+    color:rgba(131, 127, 127, 0.5);
+}
+.selectsize{
+    font-weight: bolder;
+}
+.sizes{
+    display:flex;
+    gap:20px;
+ }
+.size{
+    background:rgba(240, 240,240, 0.5);
+    width:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px 0px;
+    border:solid thin rgba(240, 240,240, 0.5);
+    cursor:pointer;
+    font-weight: bolder;
+    font-size: 13px;
+ }
+.size:hover{
+    opacity:0.8
+}
+.addcart{
+    background:red;
+    width:150px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px 10px;
+    color:#fff;
+    cursor:pointer;
+    font-weight: bolder;
+ }
+.addcart:hover{
+    opacity:0.8
+}
+.catags{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    color: rgb(36, 37, 37);
+}
+.catags span{
+    font-weight: bolder;
+}
+.dess{
+    display:flex;
+    gap: 25px;
+    padding-left: 150px;
+    position: relative;
+    top: -80px;
+ }
+.des{
+    background:transparent;
+    width:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:solid thin rgba(220, 220,220, 0.8);
+    cursor:pointer;
+    font-weight: bolder;
+    font-size: 13px;
+    text-decoration: none;
+ }
+.edit{
+    border:solid thin rgba(63, 209, 50, 0.8);
+    color: rgba(69, 209, 50, 0.8);
+    padding:15px 25px;
+
+ }
+.del{
+    border:solid thin rgba(209, 50, 50, 0.8);
+    color: rgba(209, 50, 50, 0.8);
+    padding:15px 50px;
+
+ }
+.des:hover{
+    opacity:0.8
+}

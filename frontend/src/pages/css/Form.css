@@ -1,0 +1,95 @@
+
+.formsp{
+    display:flex;
+    flex-direction: column;
+     padding:40px 40px 300px 40px;
+}
+
+.formF{
+    background:linear-gradient(180deg,#f3f3f3,#f7f4f4,#fff);
+    padding:0px  20px;
+    margin:0 120px;
+}
+.formF h2{
+    padding-left: 20px;
+}
+.for{
+    position: relative;
+    padding-bottom: 40px;
+    left: 20px;   
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.for input{
+    height: 30px;
+    width: 95%;
+}
+.for textarea{
+    width: 96%;
+}
+.select-price{
+    display: flex;
+    gap: 30px;
+    margin-right:20px;
+}
+.prices{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+.select{
+    display: flex;
+    flex-direction: column;
+}
+select{
+    height: 30px;
+    width: 20%;
+}
+.price{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+.price label{
+    font-size: 15px;
+    font-weight: lighter;
+}
+.file{
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.upload{
+    color: #3e8499;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnsub{
+    width: 15%;
+    padding: 10px 20px;
+    background-color: rgb(59, 59, 189);
+    color: #fff;
+    font-weight: bold;
+    border-style: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media(max-width:800px){
+    .for input,.for textarea,.select{
+        width: 70%;
+    }
+    .select-price{
+        flex-wrap: wrap;
+    }
+    .price{
+        width: 100%;
+    }
+    .btnsub{
+        width: 25%;
+    }
+}

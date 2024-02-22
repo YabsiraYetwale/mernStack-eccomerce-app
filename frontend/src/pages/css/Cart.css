@@ -1,0 +1,151 @@
+.carts1{
+    display:flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding:70px 10px 140px 10px;
+    gap: 50px;
+}
+.carts{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    color:rgb(112, 108, 108);
+    font-weight: bolder;
+}
+.caheder{
+    position: relative;
+    display:flex;
+    justify-content: space-around;
+    gap:10px;
+    color:rgb(109, 99, 99);
+    font-weight: bolder;
+}
+.pti{
+    display:flex;
+    justify-content: space-around;
+    gap:65px;
+}
+.pti .ti{
+    width: 230px;
+}
+.kidd{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+}
+.kidehr hr ,.hrt{
+    width: 90%;
+}
+.kidehr{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+}
+.kide{
+    display:flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+.qua{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid thin rgba(220, 220,220, 0.8);
+    padding:3px 15px;
+    height: 30px;
+}
+.imgti{
+    display:flex;
+    justify-content: space-around;
+    gap:50px;
+}
+.imgti span{
+    width: 230px;
+}
+.kide img{
+    position: relative;
+    left: -20px;
+    width:40px;
+    height: 40px;;
+}
+
+.cartright{
+    display:grid;
+    grid-template-columns: 1fr 0.25fr;
+    padding-left: 70px;
+
+ }
+.carrleft{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    gap:10px;
+ }
+ .rgti{
+    font-size: 25px;
+    font-weight: bolder;
+ }
+.cals{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+    gap:5px;
+    color:#565656;
+ }
+.sut{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#565656;
+ }
+ .su{
+    font-weight: bolder;
+    font-size: 14px;
+ }
+ .suth{
+    font-weight: bolder;
+    font-size: 20px;
+ }
+.caright{
+    display:flex;
+    justify-content:space-around;
+    gap:100px;
+ }
+ .carrs{
+     display:flex;
+     flex-direction:column;
+     padding:5px 180px;
+     gap:10px;
+ }
+ .carrs span{
+     font-weight:bolder;
+ }
+ .promo{
+     color:#565656;
+ }
+ .promocode{
+     display:flex;
+     justify-content:center;
+     align-items:center;
+ }
+ .promoi{
+     width:300px;
+     padding:17px 0px;
+     border:none;
+     padding-left:30px;
+     background:rgba(240, 240,240, 0.8);
+ }
+ .csumit{
+     background:linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%);
+     display:flex;
+     justify-content:center;
+     align-items:center;
+     padding:15px 40px;
+     color:#fff;
+     cursor:pointer;
+  }
+ .csumit:hover{
+    opacity: 0.5;
+ } 
