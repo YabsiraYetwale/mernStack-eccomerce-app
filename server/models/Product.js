@@ -22,6 +22,9 @@ const productSchema=new mongoose.Schema({
         type:Date,
         default:Date.now()
     },
+    creator:{
+        type:String,
+    }
 })
 const Product=mongoose.model('productModel',productSchema)
 export default Product

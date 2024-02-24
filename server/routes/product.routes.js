@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
   const upload =multer({storage:storage});
 productRouter.post('/',upload.single('image'),async(req,res)=>{
        const{...products}= req.body
-       const createProduct= new Product({...products,image:req?.file?.filename})
+       const createProduct= new Product({...products,image:req?.file?.filename,creator:req.userId})
        try {
         await createProduct.save();
 
@@ -43,7 +43,7 @@ productRouter.patch('/:id',async(req,res)=>{
     try{
        const {id}= req.params
        const {...product}= req.body
-       const updatedProduct= await Product.findByIdAndUpdate(id,product,{new:true})
+       const updatedProduct= await Product.findByIdAndUpdate(id,{...product,creator:req.userId},{new:true})
        if (!updatedProduct) {
         return res.json({message: 'no products with this id'})
        }
