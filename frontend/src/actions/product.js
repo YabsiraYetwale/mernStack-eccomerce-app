@@ -6,6 +6,7 @@ export const createProduct=(product)=>async(dispatch)=>{
         dispatch({type:START_LOADNG})
     const {data}=await api.createProduct(product)
     dispatch({type:CREATE,payload:data})
+    console.log(data)
     dispatch({type:END_LOADNG})
     } catch (error) {
         console.log(error)
@@ -16,6 +17,7 @@ export const fetchProducts=()=>async(dispatch)=>{
         dispatch({type:START_LOADNG})
     const {data}=await api.fetchProducts()
     dispatch({type:FETCH_ALL,payload:data})
+    console.log(data)
     dispatch({type:END_LOADNG})
     } catch (error) {
         console.log(error)

@@ -16,7 +16,6 @@ productRouter.post('/',upload.single('image'),async(req,res)=>{
        const createProduct= new Product({...products,image:req?.file?.filename,creator:req.userId})
        try {
         await createProduct.save();
-
         res.status(201).json({createProduct});
     } catch (error) {
         res.status(409).json({ message: error });

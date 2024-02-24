@@ -1,4 +1,4 @@
 import {combineReducers} from 'redux'
-import {auth} from './auth'
-import {product} from './product'
-export default combineReducers({product,auth})
+import {auths} from './auths'
+import {products} from './products'
+export default combineReducers({products,auths})
