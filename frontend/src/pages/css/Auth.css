@@ -43,6 +43,10 @@
    background:red;
    border:none;
    font-weight:bolder;
+   cursor: pointer;
+}
+.auths form button:hover{
+  opacity: 0.8;
 }
 .have{
     display:flex;

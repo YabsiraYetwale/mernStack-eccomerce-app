@@ -1,18 +1,31 @@
 import * as api from '../api'
-import { SIGNIN, SIGNUP } from '../components/actionTypes'
+import { AUTH} from '../components/actionTypes'
 
-export const signUpUser=(user)=>async(dispatch)=>{
+export const signUpUser=(user,history)=>async(dispatch)=>{
    try {
     const {data}=await api.signUpUser(user)
-    dispatch({type:SIGNUP,payload:data})
+    dispatch({type:AUTH,payload:data})
+    if (data?.result) {
+      history('/')
+    }
+    else{
+      alert("User already exists! Please enter your new email")
+    }
    } catch (error) {
     console.log(error)
    }
 }
-export const signInUser=(user)=>async(dispatch)=>{
+
+export const signInUser=(user,history)=>async(dispatch)=>{   
    try {
     const {data}=await api.signInUser(user)
-    dispatch({type:SIGNIN,payload:data})
+    dispatch({type:AUTH,payload:data})
+    if (data?.result) {
+      history('/')
+    }
+    else{
+      alert("invalid credintials!")
+    }
    } catch (error) {
     console.log(error)
    }

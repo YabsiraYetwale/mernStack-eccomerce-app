@@ -7,11 +7,13 @@ import './css/Form.css'
 const FormCreate = () => {
   const dispatch=useDispatch()
   const history=useNavigate()
+  const user=JSON.parse(localStorage.getItem("user-auth"))
+
   const [formData,setFormData]=useState({title:'',description:'',category:'',image:'',oldPrice:0,newPrice:0,})
  
   const handleSubmit=(e)=>{
     e.preventDefault()
-    dispatch(createProduct(formData,history))
+    dispatch(createProduct({...formData,creatorname:user?.result?.name},history))
   }
   return (
     <>

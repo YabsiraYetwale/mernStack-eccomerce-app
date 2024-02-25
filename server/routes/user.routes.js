@@ -1,4 +1,4 @@
-import express, { request } from 'express'
+import express from 'express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
@@ -15,7 +15,7 @@ userRouter.post('/signup',async(req,res)=>{
         const user =new  User({name,cartData,email,password:hashPassword})
         await user.save()
         const token= jwt.sign({email:user.email,_id:user._id},'secret')
-        res.json({user,token})
+        res.json({result:user,token})
     } catch (error) {
         res.json(error)
     }
@@ -32,7 +32,7 @@ userRouter.post('/signin',async(req,res)=>{
            return res.json({message: "invalid credintials!"})
         }
         const token= jwt.sign({email:existingUser.email,_id:existingUser._id},'secret')
-        res.json({user:existingUser,token})
+        res.json({result:existingUser,token})
     } catch (error) {
         res.json(error)
     }

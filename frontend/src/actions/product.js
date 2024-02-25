@@ -62,3 +62,13 @@ export const deleteProduct = (id, history) => async (dispatch) => {
     console.log(error);
   }
 };
+export const deleteProducts = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADNG });
+    await api.deleteProduct(id);
+    dispatch({ type: DELETE, payload: id });
+    dispatch({ type: END_LOADNG });
+  } catch (error) {
+    console.log(error);
+  }
+};

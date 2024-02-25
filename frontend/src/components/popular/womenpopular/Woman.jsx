@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const Woman = ({woman}) => {
   return (
     <>
-    <div className='woman'>
+   {woman.category === "women" && <div className='woman'>
        <Link to={`/${woman._id}`}><img src={woman.image} alt='img'/></Link>
        <div className='wo'>
           <span className='title'>{woman.title}</span>
@@ -14,7 +14,7 @@ const Woman = ({woman}) => {
 
           </div>
        </div>
-    </div>
+    </div>}
     </>
   )
 }

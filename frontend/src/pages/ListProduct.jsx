@@ -1,9 +1,22 @@
-import React from 'react'
-import { catagories } from '../components/utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { CircularProgress } from '@mui/material'
+import { deleteProducts, fetchProducts } from '../actions/product'
+import { useEffect } from 'react'
 import {Delete} from '@mui/icons-material'
 import './css/ListProduct.css'
 
 const ListProduct = () => {
+  const {products,isLoading}=useSelector(state=>state.products)
+  const dispatch=useDispatch()
+  useEffect(() => {
+    dispatch(fetchProducts())
+  },[dispatch])
+  if (!products) {
+    return(null)
+  }
+  if (isLoading) {
+    return('Loading ...')
+  }
 return (
     <>
     <div className="lists1">
@@ -19,18 +32,18 @@ return (
         <span>Remove</span>
       </div>
       <div className="list">
-        {catagories.map((ki,i)=>(
+        {products.map((product,i)=>(
           <div className="listhr" key={i}>
             <hr/>
             <div className="liste">
             <div className="imglis">
-            <img src={ki.image} alt="img" />
-            <span>{ki.title}</span>
+            <img src={product.image} alt="img" />
+            <span>{product.title}</span>
             </div>
-            <span>${ki.oldprice}</span>
-             <span>${ki.newprice}</span>
-             <span>{ki.catagory}</span>
-             <span className='dellis'><Delete/></span>
+            <span>${product.oldPrice}</span>
+             <span>${product.newPrice}</span>
+             <span>{product.category}</span>
+             <span className='dellis' onClick={()=>dispatch(deleteProducts(product._id))}><Delete/></span>
             </div>
           </div>
         ))}
@@ -64,7 +77,7 @@ return (
          </div>
          <div className="lisut lisuth">
            <span>Total</span>
-           <span>{catagories.length}</span>
+           <span>{products.length}</span>
          </div>
        </div>
       </div>

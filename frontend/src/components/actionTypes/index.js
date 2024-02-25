@@ -1,8 +1,7 @@
 export const START_LOADNG="START_LOADNG"
 export const END_LOADNG="END_LOADNG"
 
-export const SIGNUP="SIGNUP"
-export const SIGNIN="SIGNIN"
+export const AUTH="AUTH"
 export const LOGOUT="LOGOUT"
 
 export const CREATE="CREATE"

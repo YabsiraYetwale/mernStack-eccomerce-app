@@ -41,6 +41,7 @@ nav{
     opacity:0.5;
 }
 .auth{
+    position: relative;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -61,6 +62,26 @@ nav{
     border-radius:20px;
     background:linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%);
     color:#fff;
+}
+.logpop{
+    background: transparent;
+    color: red;
+    border: solid red;
+    cursor: pointer;
+}
+.logoutpop{
+    position: absolute;
+    top: 55px;
+    left: -80px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    width: 150px;
+    height: 120px;
+    border-radius: 10px;
+    background:linear-gradient(180deg,#c7bcc7,#7a7a7a,#89ac8c 60%);
 }
 .addproduct{
     background:linear-gradient(180deg,#6d496d,#cc7373,#ac8989);

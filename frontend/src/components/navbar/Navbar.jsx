@@ -1,11 +1,17 @@
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Navbar.css'
 import logo from '../../assets/logo.jpg'
 import cart from '../../assets/Shopping-Cart.png'
+import { LOGOUT } from '../actionTypes'
+import { useDispatch } from 'react-redux'
 const Navbar = () => {
+    const dispatch=useDispatch()
+    const history=useNavigate()
+    const location=useLocation()
     const [menu,setMenu]=useState("shop")
-    const [login,setlogin]=useState(false)
+    const [popUp,setPopUp]=useState(false)
+    const [user,setUser]=useState(JSON.parse(localStorage.getItem("user-auth")))
     const handleClick = () => {
       window.scrollTo(0,0)
       setMenu('shop')
@@ -24,7 +30,13 @@ const Navbar = () => {
       window.scrollTo(0,0)
       {setMenu("products")}
     }
-    
+    const logOutUser = () => {
+      dispatch({type:LOGOUT})
+      history('/auth')
+    }
+    useEffect(()=>{
+      setUser(JSON.parse(localStorage.getItem("user-auth")))
+    },[location])
   return (
     <>
     <nav>
@@ -40,10 +52,9 @@ const Navbar = () => {
         <div onClick={handleProducts}><Link className="li" to='/listProduct'>Products</Link>{menu=='products'?<hr className="hr"/> : <></>}</div>
       </div>
       <Link className="addproduct" to='/addProduct'>Add Product</Link>
-
       <div className="auth">
-        <div className="logoavatar">Y</div>
-         <Link className="lia lial" to='/auth'>{login?'Login' : 'Logout'}</Link>
+      {user?.result &&<div className="logoavatar" onClick={()=>setPopUp(prev=>!prev)}>{user?.result?.name?.charAt(0)}</div>}         
+      <>{user?.result ? <>{popUp && <div className="logoutpop"  onClick={()=>setPopUp(false)}><div className="lia lial logpop" onClick={logOutUser}>Logout</div></div>}</>: <Link className="lia lial" to='/auth'>Login</Link>}</>
         <div className="cartcou">
         <Link className="lia" to='/cart'><img src={cart} alt='cart' className="cartimg"/></Link>
         <div className="avatar"><span>0</span></div>

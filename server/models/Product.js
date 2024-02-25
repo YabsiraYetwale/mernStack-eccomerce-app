@@ -27,6 +27,9 @@ const productSchema=new mongoose.Schema({
     },
     creator:{
         type:String,
+    },
+    creatorname:{
+        type:String,
     }
 })
 const Product=mongoose.model('productModel',productSchema)

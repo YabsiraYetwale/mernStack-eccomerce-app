@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { CircularProgress } from '@mui/material'
-import { fetchProducts } from '../../../actions/product'
+import { fetchProducts } from '../../actions/product'
 import { useEffect } from 'react'
-import Woman from './Woman'
+import NewCollection from './NewCollection'
+import './Kid.css'
 
-import './Woman.css'
-
-const Women = () => {
+const NewCollections = () => {
   const {products,isLoading}=useSelector(state=>state.products)
   const dispatch=useDispatch()
   useEffect(() => {
@@ -20,12 +19,12 @@ const Women = () => {
   }
   return (
    <>
-   <div className='women1'>
-    <span className='womentitle'>POPULAR  IN WOMEN <hr className='wohr'/></span>
-   <div className='women'>
-    {products.map((woman,i)=>(
+   <div className='kids1'>
+    <span className='kidstitle'>NEW COLLECTIONS <hr className='kidshr'/></span>
+   <div className='kids'>
+    {products.map((newCollection,i)=>(
       <div key={i}>
-         <Woman woman={woman}/>
+         <NewCollection newCollection={newCollection}/>
       </div>
     ))}
    </div>
@@ -34,4 +33,4 @@ const Women = () => {
   )
 }
 
-export default Women
+export default NewCollections

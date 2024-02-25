@@ -1,5 +1,4 @@
 import {MenCatagory,WomenCatagory,KidsCatagory} from './Catagory'
-import {catagories} from '../utils/index'
 import m7 from '../../assets/m77.png'
 import w5 from '../../assets/w10.png'
 import k4 from '../../assets/k44.png'
@@ -44,7 +43,7 @@ export const MenCatagories = () => {
     </div>
     <div>
     <div className="sortshowm">
-    <span  className="show" >Showing 1-12 out of 54 Products</span>
+    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
 
     <div className="sortm"><span>Sort by</span></div>
     </div>
@@ -97,7 +96,7 @@ export const WomenCatagories = () => {
     </div>
      <div>
      <div className="sortshowm">
-    <span  className="show" >Showing 1-12 out of 54 Products</span>
+    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
     <div className="sortm"><span>Sort by</span></div>
     </div>
     <div className='cats1 cats1w'>
@@ -148,7 +147,7 @@ export const KidsCatagories = () => {
     </div>
     </div>
     <div className="sortshowm sortk">
-    <span  className="show" >Showing 1-12 out of 54 Products</span>
+    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
 
     <div className="sortm"><span>Sort by</span></div>
     </div>
