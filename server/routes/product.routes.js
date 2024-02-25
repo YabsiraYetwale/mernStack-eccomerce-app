@@ -1,23 +1,15 @@
 import express from 'express'
-import multer from 'multer'
-import path from 'path'
 import Product from '../models/Product.js'
 const productRouter=express.Router()
 
-const storage = multer.diskStorage({
-    destination:'./upload/images',
-    filename:(req,file,cb)=>{
-      return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-    }
-  });
-  const upload =multer({storage:storage});
-productRouter.post('/',upload.single('image'),async(req,res)=>{
+productRouter.post('/',async(req,res)=>{
        const{...products}= req.body
-       const createProduct= new Product({...products,image:req?.file?.filename,creator:req.userId})
+       const createProduct= new Product({...products,creator:req.userId})
        try {
         await createProduct.save();
         res.status(201).json({createProduct});
     } catch (error) {
+        console.log(error)
         res.status(409).json({ message: error });
     }
 })
@@ -27,6 +19,8 @@ productRouter.get('/',async(req,res)=>{
         res.json({products})
     }catch(err){
         res.json(err)
+        console.log(err)
+
     }
 })
 productRouter.get('/:id',async(req,res)=>{
@@ -36,6 +30,8 @@ productRouter.get('/:id',async(req,res)=>{
         res.json({product})
     }catch(err){
         res.json(err)
+        console.log(err)
+
     }
 })
 productRouter.patch('/:id',async(req,res)=>{

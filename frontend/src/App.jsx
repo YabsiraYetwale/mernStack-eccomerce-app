@@ -9,7 +9,7 @@ import {MenShopCatagory,WomenShopCatagory,KidsShopCatagory} from './pages/ShopCa
 import Footer from './components/footer/Footer'
 import Detail from './pages/Detail'
 import FormCreate from './pages/FormCreate'
-import FormEdit from './pages/FormEdit'
+import {FormEdit,FormHome } from './pages/FormEdit'
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,7 +17,7 @@ const App = () => {
     <Routes>
         <Route path='/' Component={Home}/>
         <Route path='/addProduct' Component={FormCreate}/>
-        <Route path='/editProduct/:id' Component={FormEdit}/>
+        <Route path='/editProduct/:id' Component={FormHome}/>
         <Route path='/catagory/men' Component={MenShopCatagory}/>
         <Route path='/catagory/women' Component={WomenShopCatagory}/>
         <Route path='/catagory/kids' Component={KidsShopCatagory}/>

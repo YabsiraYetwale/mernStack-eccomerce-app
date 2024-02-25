@@ -79,7 +79,7 @@
   justify-content:space-between;
   align-items:center;
   gap:20px;
-  padding:5px 0px;
+  padding:5px 70px 5px 120px;
 }
 .sortk{
     gap:50rem;
@@ -142,23 +142,23 @@
     align-items:center;
     gap:40px;
 }
-.cats1m {
+/*.cats1m {
     position:relative;
     top:-90px;
-}
+}*/
 .cats1w{
     position:relative;
     top:-60px;
 }
 
 .cats{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    justify-content:center;
+    display:flex;
+    justify-content:center; 
     align-items:center;
-    gap:40px;
+    flex-wrap: wrap;
+    gap:2em;
 }
 .ctitle{
     width:200px;
     color:rgba(75, 68, 68, 0.9);
-}
+} 
