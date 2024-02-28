@@ -4,17 +4,19 @@ import Women from '../components/popular/womenpopular/Women'
 import Offer from '../components/offer/Offer'
 import NewsLetter from '../components/newsLetter/NewsLetter'
 import NewCollections from '../components/newcollection/NewCollections'
-import './css/Home.css'
+import { Box } from '@mui/material'
 const Home = () => {
   return (
     <>
-    <div className='homeshop'>
+    <Box sx={{display:'flex',
+    flexDirection:'column',
+    gap:'100px',}}>
     <Hero/>
     <Women/>
     <Offer/>
     <NewCollections/>
     <NewsLetter/>
-    </div>
+    </Box>
     </>
   )
 }

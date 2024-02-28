@@ -2,7 +2,8 @@ import {useState} from 'react'
 import {useDispatch} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {signUpUser,signInUser} from '../actions/user'
-import './css/Auth.css'
+import { Box,Button,TextField,Typography } from '@mui/material'
+
 
 const Auth = () => {
   const [isSignUp,setIsSignUp]=useState(false)
@@ -20,23 +21,70 @@ const Auth = () => {
   }
   return (
     <>
-   <div className="auths1">
-   <div className="auths">
-   <div className="authtitle">{isSignUp ? 'SignUp' :'Login'}</div>
-    <form onSubmit={handleSubmit}>
-    {isSignUp &&<input value={userData.name} onChange={(e)=>setUserData({...userData,name:e.target.value})} type="text" placeholder="Your name" />}
-    <input value={userData.email} onChange={(e)=>setUserData({...userData,email:e.target.value})} type="email" placeholder="Email address" />
-    <input value={userData.password} onChange={(e)=>setUserData({...userData,password:e.target.value})} type="password" placeholder="Your password" />
-    <button className="registor">{isSignUp ?'Register':'Login'}</button>
+   <Box sx={{ display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    textAlign:'center',
+    padding:'90px 30px 90px 30px',
+    margin:'0 0 180px 0',
+    background:'linear-gradient(#f5f1f5,#fcfcfc,#b1abab )',}}>
+   <Box sx={{display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    textAlign:'center',
+    padding:'30px',
+    gap:'20px',
+    background:'#fff',}}>
+   <Box sx={{fontWeight:'bolder',
+    fontSize:'30px',}}>{isSignUp ? 'SignUp' :'Login'}</Box>
+    <form  style={{display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    textAlign:'center',
+    width:'400px',
+    gap:'20px',}}>
+    {isSignUp &&<TextField sx={{ width:'100%',"@media(max-width:400px)":{
+      width:'63%',
+    }
+   }} value={userData.name} onChange={(e)=>setUserData({...userData,name:e.target.value})} type="text" placeholder="Your name" />}
+    <TextField sx={{ width:'100%',"@media(max-width:400px)":{
+      width:'63%',
+    }
+   }} value={userData.email} onChange={(e)=>setUserData({...userData,email:e.target.value})} type="email" placeholder="Email address" />
+    <TextField sx={{ width:'100%',"@media(max-width:400px)":{
+      width:'63%',
+    }
+   }} value={userData.password} onChange={(e)=>setUserData({...userData,password:e.target.value})} type="password" placeholder="Your password" />
+    <Button variant="contained" onClick={handleSubmit}   sx={{width:'100%',"@media(max-width:400px)":{
+      width:'63%',
+    },
+   height:'40px',
+   background:'red',
+   "& hover":{
+    background:'red',
+   },
+   border:'none',
+   fontWeight:'bolder',
+   cursor:' pointer',}}>{isSignUp ?'Register':'Login'}</Button>
     {isSignUp?
-      <div  onClick={()=>setIsSignUp(preve=>!preve)}  className="have">Already have an account?<div className="login">Login here</div></div>
+      <Box  onClick={()=>setIsSignUp(preve=>!preve)}  sx={{ display:'flex',
+      color:'#383636',}}>Already have an account?<Box sx={{color:'rgb(190, 18, 18)',
+      fontWeight:'bolder',
+      cursor:'pointer',}}>Login here</Box></Box>
       :
-      <div onClick={()=>setIsSignUp(preve=>!preve)}  className="have">Don't have an account? <div className="login">Register here</div></div>
+      <Box onClick={()=>setIsSignUp(preve=>!preve)}  sx={{ display:'flex',
+      color:'#383636',}}>Don't have an account? 
+      <Box sx={{color:'rgb(190, 18, 18)',
+    fontWeight:'bolder',
+    cursor:'pointer',}}>Register here</Box></Box>
 
       }
     </form>
-   </div>
-   </div>
+    </Box>
+   </Box>
     </>
   )
 }

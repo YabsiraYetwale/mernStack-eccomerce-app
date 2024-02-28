@@ -2,9 +2,8 @@ import {MenCatagory,WomenCatagory,KidsCatagory} from './Catagory'
 import m7 from '../../assets/m77.png'
 import w5 from '../../assets/w10.png'
 import k4 from '../../assets/k44.png'
-import './catagory.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { CircularProgress } from '@mui/material'
+import { Box, CardMedia, CircularProgress, Typography } from '@mui/material'
 import { fetchProducts } from '../../actions/product'
 import { useEffect } from 'react'
 export const MenCatagories = () => {
@@ -19,46 +18,118 @@ export const MenCatagories = () => {
   if (isLoading) {
     return('Loading ...')
   }
- 
-  
+
   return (
     <>
-   <div className='catagorys1'>
-    <div  className='catagorys'>
-    <div className='catagory'>
-     <div className="catagoryparticles">
-        <div className="cright">
-         <div className="flat">
-             <span>FLAT 50% OFF</span>
-         </div>
-         <div  className="hour" ><span>12</span> Hours <span>20</span> Mins</div>
+    <Box sx={{ display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'column',
+    gap:'20px',
+    padding:'32px 0px 50px 0px',
+    "@media (max-width:620px)":{
+      padding:'57.5px 0px 50px 0px',
+    },
+    }}>
+    <Box  sx={{  display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'20px 0',
+    }}>
+    <Box sx={{background:'linear-gradient(#f1edf1,#fefefe,#ddd,#fff)',
+    padding:'0px 180px 0px 180px',}}>
+     <Box sx={{padding:'0px 5px 0px 5px',
+   display:'flex',
+   justifyContent:'space-around',
+   gap:'100px',
+      "@media (max-width:620px)":{
+        gap:'10px',
+        flexWrap:'wrap',
+        flexDirection:'column-reverse',
+      }
 
-         <div className="explore"><span>Explore more</span></div>
-        </div>
-        <div className="cleft">
-         <img src={m7} alt='catagory'/>
-        </div>
-     </div>
-    </div>
-    </div>
-    <div>
-    <div className="sortshowm">
-    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
+   }}>
+        <Box sx={{ display:'flex',
+    flexDirection:'column',
+    padding:'30px 0',}}>
+         <Box sx={{ color:'#c037c0 ',
+    display:'flex',
+    flexDirection:'column'}}>
+             <Typography sx={{ fontSize:'60px',fontWeight:'bolder', 
+        "@media (max-width:620px)":{
+          fontSize:'30px'
+      }}}>FLAT 50% OFF</Typography>
+         </Box>
+         <Box sx={{
+    display:'flex',
+    justifyContent: 'center',
+    alignItems:'center',
+    gap:'10px',
+    fontSize:'30px',
+    fontWeight:'bolder',
+    padding:'15px 10px',}}><Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>12</Typography> Hours <Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>20</Typography> Mins</Box>
 
-    <div className="sortm"><span>Sort by</span></div>
-    </div>
-    <div className='cats1 cats1m'>
-  <div className='cats'>
+         <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+        </Box>
+        <Box sx={{display:'flex',
+  justifyContent:'center',
+  alignItems:'center'}}>
+         <CardMedia image={m7} alt='catagory' sx={{ width:'250px',
+    height:'250px',}}/>
+        </Box>
+     </Box>
+    </Box>
+    </Box>
+    <Box sx={{  display:'flex',
+  justifyContent:'space-between',
+  alignItems:'center',
+  gap:'20px',
+  padding:'5px 70px 5px 120px', 
+  gap:'50rem',
+  padding:'5px 20px',
+  "@media (max-width:620px)":{
+    gap:'5rem',
+  }
+  }}>
+    <Typography  sx={{color:'#565656'}} >Showing 1-12 out of {products.length} Products</Typography>
+
+    <Box sx={{  background:'#fff',
+    width:'150px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'30px',
+    border:'solid thin',
+    cursor:'pointer',}}><Typography>Sort by</Typography></Box>
+    </Box>
+    <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
     {products.map((post,i)=>(
-      <div key={i}>
+      <Box key={i}>
          <MenCatagory post={post}/>
-      </div>
+      </Box>
     ))}
-   </div>
-   </div>
-    </div>
-    <div className="explore"><span>Explore more</span></div>
-    </div>
+   </Box>
+   <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+    </Box>
     </>
   )
 }
@@ -76,41 +147,115 @@ export const WomenCatagories = () => {
   }
   return (
     <>
-    <div className='catagorys1'>
-    <div  className='catagorys'>
-    <div className='catagory'>
-     <div className="catagoryparticles">
-        <div className="cright">
-         <div className="flat">
-             <span>FLAT 50% OFF</span>
-         </div>
-         <div  className="hour" ><span>12</span> Hours <span>20</span> Mins</div>
+    <Box sx={{ display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'column',
+    gap:'20px',
+    padding:'32px 0px 50px 0px',
+    "@media (max-width:620px)":{
+      padding:'57.5px 0px 50px 0px',
+    },
+    }}>
+    <Box  sx={{  display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'20px 0',
+    }}>
+    <Box sx={{background:'linear-gradient(#f1edf1,#fefefe,#ddd,#fff)',
+    padding:'0px 180px 0px 180px',}}>
+     <Box sx={{padding:'0px 5px 0px 5px',
+   display:'flex',
+   justifyContent:'space-around',
+   gap:'100px',
+      "@media (max-width:620px)":{
+        gap:'10px',
+        flexWrap:'wrap',
+        flexDirection:'column-reverse',
+      }
 
-         <div className="explore"><span>Explore more</span></div>
-        </div>
-        <div className="cleft">
-         <img src={w5} alt='catagory'/>
-        </div>
-     </div>
-    </div>
-    </div>
-     <div>
-     <div className="sortshowm">
-    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
-    <div className="sortm"><span>Sort by</span></div>
-    </div>
-    <div className='cats1 cats1w'>
-   <div className='cats'>
+   }}>
+        <Box sx={{ display:'flex',
+    flexDirection:'column',
+    padding:'30px 0',}}>
+         <Box sx={{ color:'#c037c0 ',
+    display:'flex',
+    flexDirection:'column'}}>
+             <Typography sx={{ fontSize:'60px',fontWeight:'bolder', 
+        "@media (max-width:620px)":{
+          fontSize:'30px'
+      }}}>FLAT 50% OFF</Typography>
+         </Box>
+         <Box sx={{
+    display:'flex',
+    justifyContent: 'center',
+    alignItems:'center',
+    gap:'10px',
+    fontSize:'30px',
+    fontWeight:'bolder',
+    padding:'15px 10px',}}><Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>12</Typography> Hours <Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>20</Typography> Mins</Box>
+
+         <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+        </Box>
+        <Box sx={{display:'flex',
+  justifyContent:'center',
+  alignItems:'center'}}>
+         <CardMedia image={w5} alt='catagory' sx={{ width:'250px',
+    height:'250px',}}/>
+        </Box>
+     </Box>
+    </Box>
+    </Box>
+    <Box sx={{  display:'flex',
+  justifyContent:'space-between',
+  alignItems:'center',
+  gap:'20px',
+  padding:'5px 70px 5px 120px', 
+  gap:'50rem',
+  padding:'5px 20px',
+  "@media (max-width:620px)":{
+    gap:'5rem',
+  }
+  }}>
+    <Typography  sx={{color:'#565656'}} >Showing 1-12 out of {products.length} Products</Typography>
+
+    <Box sx={{  background:'#fff',
+    width:'150px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'30px',
+    border:'solid thin',
+    cursor:'pointer',}}><Typography>Sort by</Typography></Box>
+    </Box>
+    <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
     {products.map((post,i)=>(
-      <div key={i}>
+      <Box key={i}>
          <WomenCatagory post={post}/>
-      </div>
+      </Box>
     ))}
-   </div>
-   </div>
-     </div>
-     <div className="explore"><span>Explore more</span></div>
-    </div>
+   </Box>
+   <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+    </Box>
     </>
   )
 }
@@ -128,40 +273,115 @@ export const KidsCatagories = () => {
   }
   return (
     <>
-    <div className='catagorys1'>
-    <div  className='catagorys'>
-    <div className='catagory'>
-     <div className="catagoryparticles">
-        <div className="cright">
-         <div className="flat">
-             <span>FLAT 50% OFF</span>
-         </div>
-         <div  className="hour" ><span>12</span> Hours <span>20</span> Mins</div>
+    <Box sx={{ display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'column',
+    gap:'20px',
+    padding:'32px 0px 50px 0px',
+    "@media (max-width:620px)":{
+      padding:'57.5px 0px 50px 0px',
+    },
+    }}>
+    <Box  sx={{  display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'20px 0',
+    }}>
+    <Box sx={{background:'linear-gradient(#f1edf1,#fefefe,#ddd,#fff)',
+    padding:'0px 180px 0px 180px',}}>
+     <Box sx={{padding:'0px 5px 0px 5px',
+   display:'flex',
+   justifyContent:'space-around',
+   gap:'100px',
+      "@media (max-width:620px)":{
+        gap:'10px',
+        flexWrap:'wrap',
+        flexDirection:'column-reverse',
+      }
 
-         <div className="explore"><span>Explore more</span></div>
-        </div>
-        <div className="cleft">
-         <img src={k4} alt='catagory'/>
-        </div>
-     </div>
-    </div>
-    </div>
-    <div className="sortshowm sortk">
-    <span  className="show" >Showing 1-12 out of {products.length} Products</span>
+   }}>
+        <Box sx={{ display:'flex',
+    flexDirection:'column',
+    padding:'30px 0',}}>
+         <Box sx={{ color:'#c037c0 ',
+    display:'flex',
+    flexDirection:'column'}}>
+             <Typography sx={{ fontSize:'60px',fontWeight:'bolder', 
+        "@media (max-width:620px)":{
+          fontSize:'30px'
+      }}}>FLAT 50% OFF</Typography>
+         </Box>
+         <Box sx={{
+    display:'flex',
+    justifyContent: 'center',
+    alignItems:'center',
+    gap:'10px',
+    fontSize:'30px',
+    fontWeight:'bolder',
+    padding:'15px 10px',}}><Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>12</Typography> Hours <Typography sx={{color:'#c037c0',fontSize:'30px',
+    fontWeight:'bolder',}}>20</Typography> Mins</Box>
 
-    <div className="sortm"><span>Sort by</span></div>
-    </div>
-    <div className='cats1 cats1k'>
-   <div className='cats'>
+         <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+        </Box>
+        <Box sx={{display:'flex',
+  justifyContent:'center',
+  alignItems:'center'}}>
+         <CardMedia image={k4} alt='catagory' sx={{ width:'250px',
+    height:'250px',}}/>
+        </Box>
+     </Box>
+    </Box>
+    </Box>
+    <Box sx={{  display:'flex',
+  justifyContent:'space-between',
+  alignItems:'center',
+  gap:'20px',
+  padding:'5px 70px 5px 120px', 
+  gap:'50rem',
+  padding:'5px 20px',
+  "@media (max-width:620px)":{
+    gap:'5rem',
+  }
+  }}>
+    <Typography  sx={{color:'#565656'}} >Showing 1-12 out of {products.length} Products</Typography>
+
+    <Box sx={{  background:'#fff',
+    width:'150px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'30px',
+    border:'solid thin',
+    cursor:'pointer',}}><Typography>Sort by</Typography></Box>
+    </Box>
+    <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
     {products.map((post,i)=>(
-      <div key={i}>
+      <Box key={i}>
          <KidsCatagory post={post}/>
-      </div>
+      </Box>
     ))}
-   </div>
-   </div>
-   <div className="explore"><span>Explore more</span></div>
-    </div>
+   </Box>
+   <Box sx={{ background:'linear-gradient(180deg,#8d828d,#8b8888,#ac8989 60%)',
+    width:'200px',
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    padding:'15px 10px',
+    borderRadius:'20px',
+    color:'#fff',
+    cursor:'pointer',}}><Typography>Explore more</Typography></Box>
+    </Box>
     </>
   )
 }

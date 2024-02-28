@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CircularProgress } from '@mui/material'
+import { Box, CircularProgress, Typography } from '@mui/material'
 import { fetchProducts } from '../../actions/product'
 import { useEffect } from 'react'
 import NewCollection from './NewCollection'
-import './Kid.css'
 
 const NewCollections = () => {
   const {products,isLoading}=useSelector(state=>state.products)
@@ -19,17 +18,24 @@ const NewCollections = () => {
   }
   return (
    <>
-   <div className='kids1'>
-    <span className='kidstitle'>NEW COLLECTIONS <hr className='kidshr'/></span>
-   <div className='kids'>
+   <Box sx={{ display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    gap:'40px',}}>
+    <Box sx={{  fontSize:'40px',
+    fontWeight:'bold', "@media (max-width:620px)":{
+                flexDirection:'column-reverse',fontSize:'30px',}}} >NEW COLLECTIONS<hr className='wohr'/></Box>
+   <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
     {products.map((newCollection,i)=>(
-      <div key={i}>
+      <Box key={i}>
          <NewCollection newCollection={newCollection}/>
-      </div>
+      </Box>
     ))}
-   </div>
-   </div>
+   </Box>
+   </Box>
    </>
+  
   )
 }
 

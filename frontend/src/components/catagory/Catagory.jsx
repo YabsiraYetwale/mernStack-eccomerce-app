@@ -1,19 +1,23 @@
 import {Link} from 'react-router-dom'
-import './catagory.css'
+import {Box, Card,CardActionArea,CardContent, CardMedia, Typography } from '@mui/material'
+import { img_url } from '../../api'
 export  const MenCatagory = ({post}) => {
   return (
     <>
-   {post.category==='men'  && <div className='cat'>
-       <Link to={`/product/${post._id}`}><img src={post.image} alt='img'/></Link>
-       <div className='ca'>
-          <span className='ctitle'>{post.title}</span>
-          <span className='ctitle'>creator:{post.creatorname}</span>
-          <div  className='cprice'>
-          <span >${post.newPrice}</span>
-          <span className='cold'>${post.oldPrice}</span>
-          </div>
-       </div>
-    </div>}
+   {post.category==='men'  && 
+    <Card sx={{width:'270px'}}>
+    <CardActionArea>
+    <Link to={`/product/${post._id}`}><CardMedia image={`${img_url}${post.image}`} sx={{minHeight:'300px',transition:'all 3s',}} alt='img'/></Link>
+      <CardContent>
+         <Typography sx={{color:'rgba(75, 68, 68, 0.9)'}}>{post.title}</Typography>
+         <Box  sx={{  fontWeight:'bolder',display:'flex',gap:'18px',}}>
+         <Typography >${post.newPrice}</Typography>
+         <Typography sx={{  textDecoration:'line-through',color:'rgba(131, 127, 127, 0.5)',}}>${post.oldPrice}</Typography>
+         </Box>
+      </CardContent>
+    </CardActionArea>
+   </Card >
+    }
     
     </>
   )
@@ -21,16 +25,20 @@ export  const MenCatagory = ({post}) => {
 export  const WomenCatagory = ({post}) => {
   return (
     <>
-   {post.category==='women'  && <div className='cat'>
-       <Link to={`/product/${post._id}`}><img src={post.image} alt='img'/></Link>
-       <div className='ca'>
-          <span className='ctitle'>{post.title}</span>
-          <div  className='cprice'>
-          <span >${post.newprice}</span>
-          <span className='cold'>${post.oldprice}</span>
-          </div>
-       </div>
-    </div>}
+   {post.category==='women'  && 
+     <Card sx={{width:'270px'}}>
+     <CardActionArea>
+     <Link to={`/product/${post._id}`}><CardMedia image={`${img_url}${post.image}`} sx={{minHeight:'300px',transition:'all 3s',}} alt='img'/></Link>
+       <CardContent>
+          <Typography sx={{color:'rgba(75, 68, 68, 0.9)'}}>{post.title}</Typography>
+          <Box  sx={{  fontWeight:'bolder',display:'flex',gap:'18px',}}>
+          <Typography >${post.newPrice}</Typography>
+          <Typography sx={{  textDecoration:'line-through',color:'rgba(131, 127, 127, 0.5)',}}>${post.oldPrice}</Typography>
+          </Box>
+       </CardContent>
+     </CardActionArea>
+    </Card >
+    }
     
     </>
   )
@@ -38,16 +46,21 @@ export  const WomenCatagory = ({post}) => {
 export  const KidsCatagory = ({post}) => {
   return (
     <>
-   {post.category==='kids'  && <div className='cat'>
-       <Link to={`/product/${post._id}`}><img src={post.image} alt='img'/></Link>
-       <div className='ca'>
-          <span className='ctitle'>{post.title}</span>
-          <div  className='cprice'>
-          <span >${post.newprice}</span>
-          <span className='cold'>${post.oldprice}</span>
-          </div>
-       </div>
-    </div>}
+   {post.category==='kids'  &&
+     <Card sx={{width:'270px'}}>
+     <CardActionArea>
+     <Link to={`/product/${post._id}`}><CardMedia image={`${img_url}${post.image}`} sx={{minHeight:'300px',transition:'all 3s',}} alt='img'/></Link>
+       <CardContent>
+          <Typography sx={{color:'rgba(75, 68, 68, 0.9)'}}>{post.title}</Typography>
+          <Box  sx={{  fontWeight:'bolder',display:'flex',gap:'18px',}}>
+          <Typography >${post.newPrice}</Typography>
+          <Typography sx={{  textDecoration:'line-through',color:'rgba(131, 127, 127, 0.5)',}}>${post.oldPrice}</Typography>
+
+          </Box>
+       </CardContent>
+     </CardActionArea>
+    </Card >
+    }
     
     </>
   )

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CircularProgress } from '@mui/material'
+import { Box, CardMedia, CircularProgress, Divider, Typography } from '@mui/material'
 import { deleteProducts, fetchProducts } from '../actions/product'
 import { useEffect } from 'react'
 import {Delete} from '@mui/icons-material'
-import './css/ListProduct.css'
+import { img_url } from '../api'
 
 const ListProduct = () => {
   const {products,isLoading}=useSelector(state=>state.products)
@@ -19,70 +19,149 @@ const ListProduct = () => {
   }
 return (
     <>
-    <div className="lists1">
-    <div className="lists">
-      <div className="listheder">
-        <div className="listi">
-        <span>Products</span>
-        <span className='liti'>Title</span>
-        </div>
-        <span>Old Price</span>
-        <span>New Price</span>
-        <span>Category</span>
-        <span>Remove</span>
-      </div>
-      <div className="list">
+    <Box sx={{ display:'flex',
+    justifyContent:' space-around',
+    flexDirection:' column',
+    padding:'140px 10px 140px 10px',
+    gap:' 50px',}}>
+    <Box sx={{display:'flex',
+    flexDirection:' column',
+    gap:' 10px',
+    color:'rgb(112, 108, 108)',
+    fontWeight:' bolder',}}>
+      <Box sx={{ position:' relative',
+    display:'flex',
+    justifyContent:' space-around',
+    gap:'10px',
+    padding:'10px 10px 10px 10px',
+    width: '90%',
+    color:'rgb(109, 99, 99)',
+    fontWeight:' bolder',}}>
+        <Box sx={{  display:'flex',
+    justifyContent:' space-around',
+    gap:'65px',}}>
+        <Typography>Products</Typography>
+        <Typography sx={{width: '230px',display:{xs:'none',sm:'none',md:'block'}}}>Title</Typography>
+        </Box>
+        <Typography sx={{display:{xs:'none',sm:'none',md:'block'}}}>Old Price</Typography>
+        <Typography>New Price</Typography>
+        <Typography>Category</Typography>
+        <Typography>Remove</Typography>
+      </Box>
+      <Box sx={{display:'flex',
+    flexDirection:' column',
+    paddingLeft:'60px',
+    justifyContent:' space-around',
+    gap:' 5px',}}>
         {products.map((product,i)=>(
-          <div className="listhr" key={i}>
-            <hr/>
-            <div className="liste">
-            <div className="imglis">
-            <img src={product.image} alt="img" />
-            <span>{product.title}</span>
-            </div>
-            <span>${product.oldPrice}</span>
-             <span>${product.newPrice}</span>
-             <span>{product.category}</span>
-             <span className='dellis' onClick={()=>dispatch(deleteProducts(product._id))}><Delete/></span>
-            </div>
-          </div>
+          <Box key={i} sx={{display:'flex',
+          flexDirection:' column',
+          justifyContent:' space-around',
+          gap:' 5px',}}>
+            <Divider sx={{width: '85%',
+            position:"relative",
+            "@media(max-width:800px)":{
+              left:'-40px',
+              width:"100%",
+            } 
+        }}/>
+            <Box sx={{display:'flex',
+    justifyContent:' space-around',
+    width:'90%',
+    gap:' 10px',
+    marginLeft:'-30px',
+    }}>
+            <Box sx={{display:'flex',
+    justifyContent:' space-around',
+    gap:'50px',}}>
+            <CardMedia image={`${img_url}${product.image}`} alt="img" sx={{
+                 position:' relative',
+                 left:' -20px',
+                 width:'40px',
+                 height:' 40px',
+            }} />
+            <Typography sx={{width: '230px',display:{xs:'none',sm:'none',md:'block'}}}>{product.title}</Typography>
+            </Box>
+            <Typography sx={{display:{xs:'none',sm:'none',md:'block'}}}>${product.oldPrice}</Typography>
+             <Typography >${product.newPrice}</Typography>
+             <Typography >{product.category}</Typography>
+             <Typography sx={{color:' red',
+    cursor:' pointer',}} onClick={()=>dispatch(deleteProducts(product._id))}><Delete/></Typography>
+            </Box>
+          </Box>
         ))}
-        <hr className='lhrt'/>
-      </div>
-    </div>
-    <div className="listright">
-      <div className="listleft">
-        <div className="rglist">Totals</div>
-         <div className="totcals">
-         <div className="lisuthr">
-         <div className="lisut lisu">
-           <span>Men</span>
-           <span>6</span>
-         </div>
-         <hr />
-         </div>
-         <div className="lisuthr">
-         <div className="lisut lisu">
-           <span>Women</span>
-           <span>10</span>
-         </div>
-         <hr />
-         </div>
-         <div className="lisuthr">
-         <div className="lisut lisu">
-           <span>Kids</span>
-           <span>8</span>
-         </div>
-         <hr />
-         </div>
-         <div className="lisut lisuth">
-           <span>Total</span>
-           <span>{products.length}</span>
-         </div>
-       </div>
-      </div>
-    </div>
-    </div>
+        <Divider sx={{width: '85%',
+        position:"relative",
+        "@media(max-width:800px)":{
+          left:'-40px',
+          width:"100%",
+        } 
+    }}/>
+      </Box>
+    </Box>
+    <Box sx={{ display:'grid',
+    gridTemplateColumns:' 1fr 1fr',
+    paddingLeft:' 70px',}}>
+      <Box sx={{  display:'flex',
+    flexDirection:' column',
+    justifyContent:'space-around',
+    gap:'10px',}}>
+        <Box sx={{fontSize:' 25px',
+    fontWeight:' bolder',}}>Totals</Box>
+         <Box sx={{display:'flex',
+    flexDirection:' column',
+    justifyContent:'space-around',
+    gap:'5px',
+    color:'#565656',}}>
+         <Box>
+         <Box sx={{ display:'flex',
+    justifyContent:'space-between',
+    gap:'20px',
+    color:'#565656',
+      fontWeight: 'bolder',
+    fontSize: '14px',}}>
+           <Typography>Men</Typography>
+           <Typography>6</Typography>
+         </Box>
+         <Divider/>
+         </Box>
+         <Box>
+         <Box sx={{ display:'flex',
+    justifyContent:'space-between',
+    gap:'20px',
+    color:'#565656',
+      fontWeight: 'bolder',
+    fontSize: '14px',}}>
+           <Typography>Women</Typography>
+           <Typography>10</Typography>
+         </Box>
+         <Divider/>
+         </Box>
+         <Box >
+         <Box sx={{ display:'flex',
+    justifyContent:'space-between',
+    gap:'20px',
+    color:'#565656',
+      fontWeight: 'bolder',
+    fontSize: '14px',}}>
+           <Typography>Kids</Typography>
+           <Typography>8</Typography>
+         </Box>
+         <Divider/>
+         </Box>
+         <Box sx={{ display:'flex',
+    justifyContent:'space-between',
+    gap:'20px',
+    color:'#565656',
+      fontWeight: 'bolder',
+    fontSize: '20px',}}>
+           <Typography>Total</Typography>
+           <Typography>{products.length}</Typography>
+         </Box>
+       </Box>
+      </Box>
+    </Box>
+    </Box>
     </>  )
 }
 

@@ -10,9 +10,11 @@ import Footer from './components/footer/Footer'
 import Detail from './pages/Detail'
 import FormCreate from './pages/FormCreate'
 import {FormEdit,FormHome } from './pages/FormEdit'
+import { Box } from '@mui/material'
 const App = () => {
   return (
-    <BrowserRouter>
+    <Box style={{overflow:'hidden'}}>
+      <BrowserRouter>
     <Navbar/>
     <Routes>
         <Route path='/' Component={Home}/>
@@ -28,6 +30,7 @@ const App = () => {
     </Routes>
     <Footer/>
     </BrowserRouter>
+    </Box>
   )
 }
 

@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { CircularProgress } from '@mui/material'
+import { Box, CircularProgress, Typography } from '@mui/material'
 import { fetchProducts } from '../../../actions/product'
 import { useEffect } from 'react'
 import Woman from './Woman'
-
-import './Woman.css'
 
 const Women = () => {
   const {products,isLoading}=useSelector(state=>state.products)
@@ -20,16 +18,22 @@ const Women = () => {
   }
   return (
    <>
-   <div className='women1'>
-    <span className='womentitle'>POPULAR  IN WOMEN <hr className='wohr'/></span>
-   <div className='women'>
+   <Box sx={{ display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    gap:'40px',}}>
+    <Box sx={{  fontSize:'40px',
+    fontWeight:'bold', "@media (max-width:620px)":{
+                flexDirection:'column-reverse',fontSize:'30px',}}} >POPULAR  IN WOMEN <hr className='wohr'/></Box>
+   <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
     {products.map((woman,i)=>(
-      <div key={i}>
+      <Box key={i}>
          <Woman woman={woman}/>
-      </div>
+      </Box>
     ))}
-   </div>
-   </div>
+   </Box>
+   </Box>
    </>
   )
 }

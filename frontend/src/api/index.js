@@ -11,6 +11,8 @@ API.interceptors.request.use((req)=>{
 export const signUpUser=(user)=> API.post('/users/signup',user)
 export const signInUser=(user)=> API.post('/users/signin',user)
 
+export const img_url='http://localhost:4000/images/'
+
 export const createProduct=(product)=> API.post('/products',product)
 export const fetchProducts=()=> API.get('/products')
 export const fetchProduct=(id)=> API.get(`/products/${id}`)

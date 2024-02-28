@@ -1,10 +1,18 @@
 import express from 'express'
 import Product from '../models/Product.js'
+import multer from 'multer'
+import path from 'path'
 const productRouter=express.Router()
-
-productRouter.post('/',async(req,res)=>{
+const storage = multer.diskStorage({
+    destination:'./upload/images',
+    filename:(req,file,cb)=>{
+      cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+  });
+  const upload =multer({storage:storage});
+productRouter.post('/',upload.single('image'),async(req,res)=>{
        const{...products}= req.body
-       const createProduct= new Product({...products,creator:req.userId})
+       const createProduct= new Product({...products,image:req?.file?.filename,creator:req.userId})
        try {
         await createProduct.save();
         res.status(201).json({createProduct});
@@ -34,11 +42,11 @@ productRouter.get('/:id',async(req,res)=>{
 
     }
 })
-productRouter.patch('/:id',async(req,res)=>{
+productRouter.patch('/:id',upload.single('image'),async(req,res)=>{
     try{
        const {id}= req.params
        const {...product}= req.body
-       const updatedProduct= await Product.findByIdAndUpdate(id,{...product,creator:req.userId},{new:true})
+       const updatedProduct= await Product.findByIdAndUpdate(id,{...product,image:req?.file?.filename,creator:req.userId},{new:true})
        if (!updatedProduct) {
         return res.json({message: 'no products with this id'})
        }
