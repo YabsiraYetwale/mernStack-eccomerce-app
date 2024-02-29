@@ -1,168 +1,138 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { Box, CardMedia, CircularProgress, Divider, Typography } from '@mui/material'
-import { deleteProducts, fetchProducts } from '../actions/product'
-import { useEffect } from 'react'
-import {Delete} from '@mui/icons-material'
-import { img_url } from '../api'
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, CardMedia, CircularProgress, Divider, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { Delete } from '@mui/icons-material';
+import { fetchProducts, deleteProducts } from '../actions/product';
+import { img_url } from '../api';
+import {
+  Container,
+  Header,
+  ProductContainer,
+  ProductItem,
+  TotalsContainer,
+  TotalsHeader,
+  TotalsItem,
+} from './styles/ListProduct.styles';
 
 const ListProduct = () => {
-  const {products,isLoading}=useSelector(state=>state.products)
-  const dispatch=useDispatch()
+  const { products, isLoading } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchProducts())
-  },[dispatch])
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   if (!products) {
-    return(null)
+    return null;
   }
+
   if (isLoading) {
-    return('Loading ...')
+    return 'Loading ...';
   }
-return (
+const categoryCounts = products.reduce((counts, product) => {
+  counts[product.category] = (counts[product.category] || 0) + 1;
+  return counts;
+}, {});
+
+  return (
     <>
-    <Box sx={{ display:'flex',
-    justifyContent:' space-around',
-    flexDirection:' column',
-    padding:'140px 10px 140px 10px',
-    gap:' 50px',}}>
-    <Box sx={{display:'flex',
-    flexDirection:' column',
-    gap:' 10px',
-    color:'rgb(112, 108, 108)',
-    fontWeight:' bolder',}}>
-      <Box sx={{ position:' relative',
-    display:'flex',
-    justifyContent:' space-around',
-    gap:'10px',
-    padding:'10px 10px 10px 10px',
-    width: '90%',
-    color:'rgb(109, 99, 99)',
-    fontWeight:' bolder',}}>
+      <Container>
+        <Header>
         <Box sx={{  display:'flex',
     justifyContent:' space-around',
     gap:'65px',}}>
-        <Typography>Products</Typography>
-        <Typography sx={{width: '230px',display:{xs:'none',sm:'none',md:'block'}}}>Title</Typography>
-        </Box>
-        <Typography sx={{display:{xs:'none',sm:'none',md:'block'}}}>Old Price</Typography>
-        <Typography>New Price</Typography>
-        <Typography>Category</Typography>
-        <Typography>Remove</Typography>
-      </Box>
-      <Box sx={{display:'flex',
-    flexDirection:' column',
-    paddingLeft:'60px',
-    justifyContent:' space-around',
-    gap:' 5px',}}>
-        {products.map((product,i)=>(
-          <Box key={i} sx={{display:'flex',
-          flexDirection:' column',
-          justifyContent:' space-around',
-          gap:' 5px',}}>
-            <Divider sx={{width: '85%',
-            position:"relative",
-            "@media(max-width:800px)":{
-              left:'-40px',
-              width:"100%",
-            } 
-        }}/>
-            <Box sx={{display:'flex',
-    justifyContent:' space-around',
-    width:'90%',
-    gap:' 10px',
-    marginLeft:'-30px',
-    }}>
-            <Box sx={{display:'flex',
-    justifyContent:' space-around',
-    gap:'50px',}}>
-            <CardMedia image={`${img_url}${product.image}`} alt="img" sx={{
-                 position:' relative',
-                 left:' -20px',
-                 width:'40px',
-                 height:' 40px',
-            }} />
-            <Typography sx={{width: '230px',display:{xs:'none',sm:'none',md:'block'}}}>{product.title}</Typography>
+            <Typography>Products</Typography>
+            <Typography sx={{ width: '230px', display: { xs: 'none', sm: 'none', md: 'block' } }}>
+              Title
+            </Typography>
+          </Box>
+          <Typography sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>Old Price</Typography>
+          <Typography>New Price</Typography>
+          <Typography>Category</Typography>
+          <Typography>Remove</Typography>
+        </Header>
+        <ProductContainer>
+          {products.map((product, i) => (
+            <Box key={i}>
+              <Divider
+                sx={{
+                  width: '90%',
+                  position: 'relative',
+                  '@media(max-width:800px)': {
+                    left: '-40px',
+                    width: '100%',
+                  },
+                }}
+              />
+              <ProductItem>
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '50px' }}>
+                  <CardMedia
+                    image={`${img_url}${product.image}`}
+                    alt="img"
+                    sx={{
+                      position: 'relative',
+                      left: '-20px',
+                      width: '40px',
+                      height: '40px',
+                    }}
+                  />
+                  <Typography sx={{ width: '230px', display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                    {product.title}
+                  </Typography>
+                </Box>
+                <Typography sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                  ${product.oldPrice}
+                </Typography>
+                <Typography>${product.newPrice}</Typography>
+                <Typography>{product.category}</Typography>
+                <Typography
+                  sx={{ color: 'red', cursor: 'pointer' }}
+                  onClick={() => dispatch(deleteProducts(product._id))}
+                ><Delete />
+                </Typography>
+              </ProductItem>
             </Box>
-            <Typography sx={{display:{xs:'none',sm:'none',md:'block'}}}>${product.oldPrice}</Typography>
-             <Typography >${product.newPrice}</Typography>
-             <Typography >{product.category}</Typography>
-             <Typography sx={{color:' red',
-    cursor:' pointer',}} onClick={()=>dispatch(deleteProducts(product._id))}><Delete/></Typography>
+          ))}
+            <Divider
+                sx={{
+                  width: '90%',
+                  position: 'relative',
+                  '@media(max-width:800px)': {
+                    left: '-40px',
+                    width: '100%',
+                  },
+                }}
+              />
+        </ProductContainer>
+      <TotalsContainer>
+        <Box>
+          <TotalsHeader>Totals</TotalsHeader>
+          <Box>
+          <Box>
+            {Object.entries(categoryCounts).map(([category, count]) => (
+              <Box key={category}>
+                <TotalsItem>
+                  <Typography>{category}</Typography>
+                  <Typography>{count}</Typography>
+                </TotalsItem>
+                <Divider />
+              </Box>
+            ))}
+          </Box>
+            <Box>
+              <TotalsItem>
+                <Typography>Total</Typography>
+                <Typography>
+                  {products.length}
+                </Typography>
+              </TotalsItem>
+              <Divider />
             </Box>
           </Box>
-        ))}
-        <Divider sx={{width: '85%',
-        position:"relative",
-        "@media(max-width:800px)":{
-          left:'-40px',
-          width:"100%",
-        } 
-    }}/>
-      </Box>
-    </Box>
-    <Box sx={{ display:'grid',
-    gridTemplateColumns:' 1fr 1fr',
-    paddingLeft:' 70px',}}>
-      <Box sx={{  display:'flex',
-    flexDirection:' column',
-    justifyContent:'space-around',
-    gap:'10px',}}>
-        <Box sx={{fontSize:' 25px',
-    fontWeight:' bolder',}}>Totals</Box>
-         <Box sx={{display:'flex',
-    flexDirection:' column',
-    justifyContent:'space-around',
-    gap:'5px',
-    color:'#565656',}}>
-         <Box>
-         <Box sx={{ display:'flex',
-    justifyContent:'space-between',
-    gap:'20px',
-    color:'#565656',
-      fontWeight: 'bolder',
-    fontSize: '14px',}}>
-           <Typography>Men</Typography>
-           <Typography>6</Typography>
-         </Box>
-         <Divider/>
-         </Box>
-         <Box>
-         <Box sx={{ display:'flex',
-    justifyContent:'space-between',
-    gap:'20px',
-    color:'#565656',
-      fontWeight: 'bolder',
-    fontSize: '14px',}}>
-           <Typography>Women</Typography>
-           <Typography>10</Typography>
-         </Box>
-         <Divider/>
-         </Box>
-         <Box >
-         <Box sx={{ display:'flex',
-    justifyContent:'space-between',
-    gap:'20px',
-    color:'#565656',
-      fontWeight: 'bolder',
-    fontSize: '14px',}}>
-           <Typography>Kids</Typography>
-           <Typography>8</Typography>
-         </Box>
-         <Divider/>
-         </Box>
-         <Box sx={{ display:'flex',
-    justifyContent:'space-between',
-    gap:'20px',
-    color:'#565656',
-      fontWeight: 'bolder',
-    fontSize: '20px',}}>
-           <Typography>Total</Typography>
-           <Typography>{products.length}</Typography>
-         </Box>
-       </Box>
-      </Box>
-    </Box>
-    </Box>
-    </>  )
-}
-
-export default ListProduct
+        </Box>
+      </TotalsContainer>
+      </Container>
+    </>
+  )
+  }
+  export default ListProduct

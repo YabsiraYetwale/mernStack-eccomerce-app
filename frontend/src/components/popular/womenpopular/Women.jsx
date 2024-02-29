@@ -1,41 +1,40 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, CircularProgress, Typography } from '@mui/material'
+import { Box, Divider} from '@mui/material'
+import { WomenContainer,Heading, ProductContainer} from './styles';
 import { fetchProducts } from '../../../actions/product'
 import { useEffect } from 'react'
 import Woman from './Woman'
 
 const Women = () => {
-  const {products,isLoading}=useSelector(state=>state.products)
-  const dispatch=useDispatch()
-  useEffect(() => {
-    dispatch(fetchProducts())
-  },[dispatch])
-  if (!products) {
-    return(null)
-  }
-  if (isLoading) {
-    return('Loading ...')
-  }
-  return (
-   <>
-   <Box sx={{ display:'flex',
-    flexDirection:'column',
-    justifyContent:'center',
-    alignItems:'center',
-    gap:'40px',}}>
-    <Box sx={{  fontSize:'40px',
-    fontWeight:'bold', "@media (max-width:620px)":{
-                flexDirection:'column-reverse',fontSize:'30px',}}} >POPULAR  IN WOMEN <hr className='wohr'/></Box>
-   <Box sx={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:4}} >
-    {products.map((woman,i)=>(
-      <Box key={i}>
-         <Woman woman={woman}/>
-      </Box>
-    ))}
-   </Box>
-   </Box>
-   </>
-  )
-}
+  const { products, isLoading } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
-export default Women
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (!products) {
+    return null;
+  }
+
+  if (isLoading) {
+    return 'Loading ...';
+  }
+
+  return (
+    <>
+      <WomenContainer>
+        <Heading>POPULAR IN WOMEN<hr/></Heading>
+        <ProductContainer>
+          {products.map((post, i) => (
+            <Box key={i}>
+              <Woman post={post} />
+            </Box>
+          ))}
+        </ProductContainer>
+      </WomenContainer>
+    </>
+  );
+};
+
+export default Women;

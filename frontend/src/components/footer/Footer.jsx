@@ -1,78 +1,54 @@
-import {Link} from 'react-router-dom'
-import {FacebookOutlined,Instagram,CallOutlined} from '@mui/icons-material'
-import logo from '../../assets/logo.jpg'
-import { Box, CardMedia, Typography } from '@mui/material'
+import {
+  FacebookOutlined,
+  Instagram,
+  CallOutlined,
+} from '@mui/icons-material';
+import { Box} from '@mui/material';
+import {
+  FooterContainer,
+  LogoBox,
+  FooterBox,
+  LogoImage,
+  FooterTitle,
+  LinkContainer,
+  FooterLink,
+  SocialMediaContainer,
+} from './styles';
+import logo from '../../assets/logo.jpg';
+
 const Footer = () => {
   const handleClick = () => {
-    window.scrollTo(0,0)
-  }
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
-    <Box sx={{display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    textAlign:'center',
-    paddingBottom:'30px',}}>
-    <Box sx={{paddingBottom:'30px'}}>
-        <Box sx={{ paddingTop:'40px',
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    flexDirection:'column',
-    gap:'40px',}}>
-        <Box sx={{display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    gap:'10px',}}>
-        <CardMedia image={logo} alt="logo" sx={{ width:'60px',
-       height:'40px',}} />
-        <Typography sx={{fontSize:'30px',
-       fontWeight:'bolder'}}>SHOPPER</Typography>
-      </Box>
-      <Box sx={{  display:'Flex',
-       justifyContent:'center',
-       alignItems:'center',
-       gap:'40px',
-       "@media(max-width:620px)":{
-        gap:"20px",
-        flexWrap:'wrap',
-       },
-       }}>
-        <Link style={{textDecoration:'none',
-textDecoration:'none',}} onClick={handleClick} to='/'><Box sx={{textDecoration:'none',
-       color:'#444',
-       fontWeight:'bold',}}>Shop</Box></Link>
-        <Link style={{textDecoration:'none',
-textDecoration:'none',}} to='/catagory/men'><Box sx={{
-       color:'#444',
-       fontWeight:'bold',}}>Men</Box></Link>
-        <Link style={{textDecoration:'none',
-textDecoration:'none',}} to='/catagory/women' ><Box sx={{
-       color:'#444',
-       fontWeight:'bold',}}>Women</Box></Link>
-        <Link style={{textDecoration:'none',
-textDecoration:'none',}} to='/catagory/kids'><Box sx={{
-       color:'#444',
-       fontWeight:'bold',}}>Kids</Box></Link>
-        <Link style={{textDecoration:'none',
-textDecoration:'none',}} to='/listProduct'><Box sx={{
-       color:'#444',
-       fontWeight:'bold',}}>Products</Box></Link>
-      </Box>
-      <Box sx={{ display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    gap:'20px',}}>
-    <FacebookOutlined/>
-    <CallOutlined/>
-    <Instagram/>
-    </Box>
-     </Box>
-    </Box>
-    </Box>
-    
+      <FooterContainer>
+        <Box>
+          <LogoBox>
+            <LogoImage image={logo} alt="logo" />
+            <FooterTitle>SHOPPER</FooterTitle>
+          </LogoBox>
+        </Box>
+        <FooterBox>
+          <LinkContainer>
+            <FooterLink onClick={handleClick} to="/">
+              Shop
+            </FooterLink>
+            <FooterLink to="/catagory/men">Men</FooterLink>
+            <FooterLink to="/catagory/women">Women</FooterLink>
+            <FooterLink to="/catagory/kids">Kids</FooterLink>
+            <FooterLink to="/listProduct">Products</FooterLink>
+          </LinkContainer>
+          <SocialMediaContainer>
+            <FacebookOutlined />
+            <CallOutlined />
+            <Instagram />
+          </SocialMediaContainer>
+        </FooterBox>
+      </FooterContainer>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

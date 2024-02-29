@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 import userRouter from './routes/user.routes.js'
 import productRouter from './routes/product.routes.js'
 
-
 const app=express()
 app.use(cors())
 app.use('/images',express.static('upload/images'))
@@ -25,28 +24,3 @@ mongoose.connect(MONGODB_URL).then(()=>{
         console.log(`${err}did not connect`)
     }
 })
-// import multer from 'multer'
-// import path from 'path'
-// import Product from './models/Product.js'
-// const storage = multer.diskStorage({
-//     // destination:'./upload/images',
-//     destination:(req,file,cb)=>{
-//         cb(null,'public/images')
-//     },
-//     filename:(req,file,cb)=>{
-//       cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
-//     }
-//   });
-//   const upload =multer({storage:storage});
-
-// //   app.use('/images',express.static('upload/images'))
-//   app.post('/upload',upload.single('file'),(req,res) =>{
-//        Product.create({image:req.file.filename})
-//       .then(result=>console.log(result))
-//       .catch(err=>console.log(err))
-       
-//     // res.json({
-//     //   success:true,
-//     //   img_url:`http://localhost:${PORT}/images/${req.file.filename}`
-//     // })  
-//   })

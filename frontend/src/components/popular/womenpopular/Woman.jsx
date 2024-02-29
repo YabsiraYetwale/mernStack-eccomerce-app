@@ -1,25 +1,38 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {Box, Card,CardActionArea,CardContent, CardMedia, Typography } from '@mui/material'
+import { Link } from 'react-router-dom';
+import {CardActionArea,CardContent,Typography } from '@mui/material';
+import {
+  StyledCard,
+  StyledCardMedia,
+  StyledTypography,
+  StyledPriceContainer,
+  StyledOldPriceTypography,
+} from './styles';
 import { img_url } from '../../../api'
-const Woman = ({woman}) => {
+const Woman = ({post}) => {
   return (
     <>
-   {woman.category === "women" && 
-   <Card sx={{width:'270px'}}>
-     <CardActionArea>
-     <Link to={`/${woman._id}`}><CardMedia image={`${img_url}${woman.image}`} sx={{minHeight:'300px',transition:'all 3s',}} alt='img'/></Link>
-       <CardContent>
-          <Typography sx={{color:'rgba(75, 68, 68, 0.9)'}}>{woman.title}</Typography>
-          <Box  sx={{  fontWeight:'bolder',display:'flex',gap:'18px',}}>
-          <Typography >${woman.newPrice}</Typography>
-          <Typography sx={{  textDecoration:'line-through',color:'rgba(131, 127, 127, 0.5)',}}>${woman.oldPrice}</Typography>
-
-          </Box>
-       </CardContent>
-     </CardActionArea>
-    </Card >}
-    </>
+    {post.category==='women'  && 
+      <StyledCard>
+      <CardActionArea>
+        <Link to={`/product/${post._id}`}>
+          <StyledCardMedia
+            image={`${img_url}${post.image}`}
+            alt="img"
+          />
+        </Link>
+        <CardContent>
+          <StyledTypography>{post.title}</StyledTypography>
+          <StyledPriceContainer>
+            <Typography>${post.newPrice}</Typography>
+            <StyledOldPriceTypography>
+              ${post.oldPrice}
+            </StyledOldPriceTypography>
+          </StyledPriceContainer>
+        </CardContent>
+      </CardActionArea>
+    </StyledCard>
+     }
+     </>
   )
 }
 
