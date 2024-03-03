@@ -8,6 +8,7 @@ import {
   StyledOldPriceTypography,
 } from './styles';
 import { img_url } from '../../../api';
+import { useDispatch } from 'react-redux';
 const MenCatagory = ({post}) => {
   return (
     <>
@@ -32,7 +33,6 @@ const MenCatagory = ({post}) => {
      </CardActionArea>
    </StyledCard>
     }
-    
     </>
   )
 }

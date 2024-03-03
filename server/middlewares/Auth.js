@@ -5,7 +5,7 @@ export const Auth=(req,res,next)=>{
         let verified
         if (token)
           verified= jwt.verify(token,'secret')
-        req.userId= verified.id
+        req.userId= verified?.id
         next()
     } catch (err) {
         console.log(err)

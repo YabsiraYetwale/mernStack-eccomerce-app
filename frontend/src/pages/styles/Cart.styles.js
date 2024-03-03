@@ -73,8 +73,11 @@ export const StyledTextField = styled(TextField)({
   width: '300px',
   padding: '17px 0px',
   border: 'none',
-  paddingLeft: '30px',
-  background: 'rgba(240, 240, 240, 0.8)',
+  paddingLeft: '30px', 
+  '@media(max-width:800px)': {
+    width: '220px',
+    paddingLeft: '0px', 
+  },
 });
 
 export const SubmitButton = styled(Box)({
@@ -105,11 +108,29 @@ export const TotalContainer = styled(Box)({
   fontSize: '20px',
 });
 
+export const PromoBox = styled(Box)({
+ display: 'flex', 
+ justifyContent: 'space-around', 
+ gap: '100px',
+});
 export const PromoCodeContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   padding: '5px 180px',
   gap: '10px',
+  '@media(max-width:800px)': {
+    padding: '35px 10px',
+
+  },
+});
+export const StyledBox = styled(Box)({
+  background: 'rgba(240, 240, 240, 0.8)',
+  display: 'flex',
+  justifyContent: 'center', 
+  alignItems: 'center',
+  '@media(max-width:530px)': {
+    flexDirection: 'column',
+  },
 });
 
 export const PromoCodeText = styled(Box)({
@@ -121,10 +142,18 @@ export const CartTotalsContainer = styled(Box)({
   flexDirection: 'column',
   justifyContent: 'space-around',
   gap: '10px',
+  '@media(max-width:800px)': {
+    width: '50%',
+  },
+ 
 });
 
 export const CartContainer = styled(Box)({
   display: 'grid',
   gridTemplateColumns: '1fr 0.25fr',
   paddingLeft: '70px',
+  '@media(max-width:800px)': {
+    gridTemplateColumns: '0.25fr',
+    paddingLeft: '0px',
+  },
 });

@@ -26,9 +26,9 @@ export const CustomCardMedia = styled(CardMedia)({
 });
 
 export const CustomTypography = styled(Typography)({
-  fontWeight: 'bolder',
-  color: '#151515',
-  fontSize: '30px',
+  fontWeight:"bolder",
+  color:"#578191",
+  fontSize:"30px"
 });
 
 export const CustomMenu = styled(MenuM)({
@@ -75,9 +75,14 @@ export const CustomToolbar = styled(Toolbar)({
 export const CustomLink = styled(Link)({
   textDecoration: 'none',
   color: '#444',
-  fontWeight: 'bold',
 });
 
+export const CustomTypographyBox = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "20px",
+});
 export const CustomTypographyAddProduct = styled(Typography)({
   cursor: 'pointer',
   display: 'flex',
@@ -117,9 +122,8 @@ export const CustomTypographyCartCount = styled(Typography)({
   position: 'absolute',
   left: '33px',
   top: '7px',
-  width: '18px',
-  height: '18px',
-  fontWeight: 'bolder',
+  width: '24px',
+  height: '24px',
   borderRadius: '100%',
   background: 'red',
   color: 'white',

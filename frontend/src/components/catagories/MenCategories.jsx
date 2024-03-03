@@ -23,6 +23,7 @@ import {
 
 const MenCategories = () => {
   const { products, isLoading} = useSelector((state) => state.products);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const MenCategories = () => {
   }
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <Container>{<CircularProgress />}</Container>
   }
 
   return (

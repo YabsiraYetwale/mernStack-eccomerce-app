@@ -27,17 +27,17 @@ const Footer = () => {
         <Box>
           <LogoBox>
             <LogoImage image={logo} alt="logo" />
-            <FooterTitle>SHOPPER</FooterTitle>
+            <FooterTitle>CLOTH-SHOP</FooterTitle>
           </LogoBox>
         </Box>
         <FooterBox>
           <LinkContainer>
             <FooterLink onClick={handleClick} to="/">
-              Shop
+              Home
             </FooterLink>
-            <FooterLink to="/catagory/men">Men</FooterLink>
-            <FooterLink to="/catagory/women">Women</FooterLink>
-            <FooterLink to="/catagory/kids">Kids</FooterLink>
+            <FooterLink to="/catagory/men">Men's</FooterLink>
+            <FooterLink to="/catagory/women">Women's</FooterLink>
+            <FooterLink to="/catagory/kids">Kid's</FooterLink>
             <FooterLink to="/listProduct">Products</FooterLink>
           </LinkContainer>
           <SocialMediaContainer>

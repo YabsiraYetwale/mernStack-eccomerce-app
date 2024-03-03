@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Box, Card,CardActionArea,CardContent, CardMedia, Typography } from '@mui/material'
+import {CardActionArea,CardContent,Typography } from '@mui/material'
 import {
   StyledCard,
   StyledCardMedia,
@@ -14,7 +14,7 @@ const NewCollection = ({ newCollection }) => {
     <>
       <StyledCard>
         <CardActionArea>
-          <Link to={`/${newCollection._id}`}>
+          <Link to={`/product/${newCollection._id}`}>
             <StyledCardMedia
               image={`${img_url}${newCollection.image}`}
               alt="img"

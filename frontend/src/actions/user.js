@@ -1,5 +1,5 @@
 import * as api from '../api'
-import { AUTH} from '../components/actionTypes'
+import { AUTH, FETCH_ALL} from '../components/actionTypes'
 
 export const signUpUser=(user,history)=>async(dispatch)=>{
    try {
@@ -31,4 +31,16 @@ export const signInUser=(user,history)=>async(dispatch)=>{
    }
 }
 
+
+
+export const fetchUsers = () => async (dispatch) => {
+  try {
+    const { data } = await api.fetchUsers();
+    dispatch({ type: 'USER', payload: data });
+    console.log(data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 

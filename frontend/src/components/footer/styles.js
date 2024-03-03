@@ -34,6 +34,7 @@ export const LogoImage = styled(CardMedia)({
 export const FooterTitle = styled(Typography)({
   fontSize: '30px',
   fontWeight: 'bolder',
+  color:'#898191'
 });
 
 export const LinkContainer = styled('div')({
@@ -50,7 +51,6 @@ export const LinkContainer = styled('div')({
 export const FooterLink = styled(Link)({
   textDecoration: 'none',
   color: '#444',
-  fontWeight: 'bold',
 });
 
 export const SocialMediaContainer = styled('div')({

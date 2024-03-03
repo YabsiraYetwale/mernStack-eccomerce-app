@@ -11,6 +11,10 @@ export const Container = styled(Box)({
 export const ImageContainer = styled(Box)({
   display: "flex",
   gap: "40px",
+  "@media(max-width:620px)":{
+    flexDirection: "column-reverse",
+    gap: "10px",
+},
 });
 
 export const ImageWrapper = styled(Box)({
@@ -18,7 +22,11 @@ export const ImageWrapper = styled(Box)({
   flexDirection: "column",
   gap: "20px",
   "@media(max-width:620px)":{
-    display:'none',
+    flexDirection: "row",
+    width: "400px",
+    gap: "10px",
+    position:'relative',
+    right:'25px',
 },
 });
 
@@ -26,18 +34,24 @@ export const Image = styled(CardMedia)({
   display: "flex",
   flexDirection: "column",
   padding: "0 0 10px 0",
-  width: "90px",
-  height: "90px",
+  width: "70px",
+  height: "85px",
   transition: "all 3s",
+  "@media(max-width:620px)":{
+    flexDirection: "row",
+    width: "85px",
+    height: "100px",
+},
 });
 
 export const MainImage = styled(CardMedia)({
   width: "380px",
-  height: "360px",
+  height: "350px",
   transition: "all 3s",
   "@media(max-width:620px)":{
+    height: "450px",
     position:'relative',
-    right:'100px',
+    right:'25px',
 },
 });
 
@@ -90,7 +104,7 @@ export const ActionButtonsWrapper = styled(Box)({
   position: "relative",
   top: "-70px",
   "@media(max-width:900px)":{
-    top: "-420px",
+    top: "-400px",
     right:'220px',
 },
   

@@ -35,7 +35,7 @@ const KidsCategories = () => {
   }
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <Container>{<CircularProgress />}</Container>
   }
 
   return (
@@ -76,6 +76,7 @@ const KidsCategories = () => {
           <Typography>Sort by</Typography>
         </SortByBox>
       </ProductsBox>
+
       <ProductContainer>
         {products.map((post, i) => (
           <Box key={i}>
@@ -84,7 +85,7 @@ const KidsCategories = () => {
         ))}
       </ProductContainer>
       <ExploreMoreButton>
-        <Typography>Explore more</Typography>
+        <Typography >Explore more</Typography>
       </ExploreMoreButton>
       </Container>
     </>

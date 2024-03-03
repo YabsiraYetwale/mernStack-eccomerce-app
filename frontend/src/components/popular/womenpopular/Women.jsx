@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, Divider} from '@mui/material'
+import { Box, CircularProgress} from '@mui/material'
 import { WomenContainer,Heading, ProductContainer} from './styles';
 import { fetchProducts } from '../../../actions/product'
 import { useEffect } from 'react'
@@ -18,7 +18,7 @@ const Women = () => {
   }
 
   if (isLoading) {
-    return 'Loading ...';
+    return <WomenContainer>{<CircularProgress/>}</WomenContainer>
   }
 
   return (
@@ -26,7 +26,7 @@ const Women = () => {
       <WomenContainer>
         <Heading>POPULAR IN WOMEN<hr/></Heading>
         <ProductContainer>
-          {products.map((post, i) => (
+          {products.slice(0,7).map((post, i) => (
             <Box key={i}>
               <Woman post={post} />
             </Box>

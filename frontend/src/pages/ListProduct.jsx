@@ -27,7 +27,7 @@ const ListProduct = () => {
   }
 
   if (isLoading) {
-    return 'Loading ...';
+    return <Container>{<CircularProgress/>}</Container>
   }
 const categoryCounts = products.reduce((counts, product) => {
   counts[product.category] = (counts[product.category] || 0) + 1;

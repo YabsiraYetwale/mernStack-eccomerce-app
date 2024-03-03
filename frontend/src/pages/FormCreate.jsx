@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from '../actions/product';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box} from '@mui/material';
 import {
   FormContainer,
   FormWrapper,
@@ -50,6 +50,7 @@ const FormCreate = () => {
           <Form onSubmit={handleSubmit}>
             <Title variant="h4">Create Product</Title>
             <InputField
+              required
               variant="outlined"
               type="text"
               label="Property Title"
@@ -58,6 +59,7 @@ const FormCreate = () => {
             />
 
             <InputField
+             required
               variant="outlined"
               label="Description"
               fullWidth
@@ -69,6 +71,7 @@ const FormCreate = () => {
 
             <SelectWrapper>
               <PriceInput
+              required
                 variant="outlined"
                 type="number"
                 label="Price"
@@ -78,6 +81,7 @@ const FormCreate = () => {
               />
 
               <PriceInput
+              required
                 variant="outlined"
                 type="number"
                 label="Offer Price"
@@ -102,7 +106,7 @@ const FormCreate = () => {
               <UploadLabel htmlFor="file">
                 <Box sx={{ color: '#3e8499', fontWeight: 'bold', cursor: 'pointer' }}>upload*</Box>
               </UploadLabel>
-              <input variant="outlined" type="file" onChange={(e) => setImage(e.target.files[0])} />
+              <input  required type="file" onChange={(e) => setImage(e.target.files[0])} />
             </UploadWrapper>
 
             <SubmitButton variant="contained" size="large" type="submit">

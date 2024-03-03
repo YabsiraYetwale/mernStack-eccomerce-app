@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {useLocation, useNavigate } from "react-router-dom";
 import {Menu} from '@mui/icons-material';
 import {Box,IconButton,MenuItem} from "@mui/material";
 import logo from "../../assets/logo.jpg";
@@ -16,12 +16,12 @@ import {
   WrapperBox,
   CustomToolbar,
   CustomLink,
+  CustomTypographyBox,
   CustomTypographyAddProduct,
   CustomTypographyLogin,
   CustomCardMediaCart,
   CustomTypographyCartCount,
 } from "./styles";
-
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [user, setUser] = useState(
@@ -39,21 +39,31 @@ const Navbar = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const handleToggleContent = () => {
+    setIsContentVisible(!isContentVisible);
+  };
+  useEffect(() => {
+    handleMenuClose();
+  }, [location.pathname]);
+  const [cartQuantity, setCartQuantity] = useState(0);
 
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user-auth")));
+     // Calculate the cart quantity
+     let totalQuantity = 0;
+     if (user && user.result && user.result.cart) {
+       user.result.cart.forEach((item) => {
+         totalQuantity += item.quantity;
+       });
+     }
+  // Set the cart quantity in the state
+     setCartQuantity(totalQuantity);
+  }, [location,cartQuantity,setCartQuantity]);
   const handleLogout = () => {
     dispatch({ type: LOGOUT });
     navigate("/auth");
   };
 
-  useEffect(() => {
-    handleMenuClose();
-  }, [location.pathname]);
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user-auth")));
-  }, [location]);
-  const handleToggleContent = () => {
-    setIsContentVisible(!isContentVisible);
-  };
 
   return (
     <>
@@ -68,29 +78,22 @@ const Navbar = () => {
             }}
           >
             <CustomCardMedia image={logo} alt="logo" />
-            <CustomTypography fontWeight="bolder" color="#151515" fontSize="30px">
-              SHOPPER
+            <CustomTypography>
+            CLOTH-SHOP
             </CustomTypography>
           </Box>
-          <IconButton   sx={{ display: { xs: "flex", sm: "flex", md:"none" } }} onClick={handleToggleContent}><Menu/></IconButton>
+          <IconButton   sx={{ display: { xs: "flex", sm: "flex", md:"none",} }} onClick={handleToggleContent}><Menu/></IconButton>
           <WrapperBox  onClick={handleToggleContent} sx={{ display: { xs:isContentVisible ? "flex": "none", sm:isContentVisible ? "flex": "none", md:"flex" } }}>
             <CustomToolbar>
               <CustomLink to="/">Home</CustomLink>
-              <CustomLink to="/catagory/men">Men</CustomLink>
-              <CustomLink to="/catagory/women">Women</CustomLink>
-              <CustomLink to="/catagory/kids">Kids</CustomLink>
+              <CustomLink to="/catagory/men">Men's</CustomLink>
+              <CustomLink to="/catagory/women">Women's</CustomLink>
+              <CustomLink to="/catagory/kids">Kid's</CustomLink>
               <CustomLink to="/listProduct">Products</CustomLink>
             </CustomToolbar>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "20px",
-              }}
-            >
+            <CustomTypographyBox>
               <CustomTypographyAddProduct>
-                <Link to="/addproduct">+</Link>
+                <CustomLink to="/addproduct">+</CustomLink>
               </CustomTypographyAddProduct>
               {user?.result ? (
               <CustomTypographyAddProduct onClick={handleMenuOpen}>
@@ -105,10 +108,10 @@ const Navbar = () => {
               <CustomLink to={'/cart'}>
                 <CustomIconButton>
                 <CustomCardMediaCart image={cart} alt="cart" />
-                <CustomTypographyCartCount>5</CustomTypographyCartCount>
+                <CustomTypographyCartCount>{user?.result ? cartQuantity :0}</CustomTypographyCartCount>
                 </CustomIconButton>
               </CustomLink>
-            </Box>
+            </CustomTypographyBox>
             <CustomMenu
               id="menu-appbar"
               anchorEl={anchorEl}

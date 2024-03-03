@@ -1,4 +1,8 @@
-import { Box, CardMedia, Divider, TextField, Typography } from '@mui/material'
+import { Box,CircularProgress,Divider,Typography } from '@mui/material'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../actions/product';
+import { img_url } from '../api';
 import {
   Container,
   SectionContainer,
@@ -13,22 +17,44 @@ import {
   SubmitButton,
   SubtotalContainer,
   TotalContainer,
+  PromoBox,
   PromoCodeContainer,
+  StyledBox,
   PromoCodeText,
   CartTotalsContainer,
   CartContainer,
 } from './styles/Cart.styles';
-import { kid } from '../components/utils'
-
-
 const Cart = () => {
+  const { products, isLoading} = useSelector((state) => state.products);
+  
+const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(fetchProducts());
+}, [dispatch]);
+
+if (!products) {
+  return null;
+}
+
+if (isLoading) {
+  return <Container>{<CircularProgress/>}</Container>
+}
+const user = JSON.parse(localStorage.getItem('user-auth'));
+
   return (
     <>
       <Container>
         <SectionContainer>
           <HeaderContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '65px' }}>
-              <Typography>Product</Typography>
+              <Typography>{user.result.cart.map((product)=>(
+                <div>
+                 id: {product.productId}
+                 quantity:{product.quantity}
+                 title:{product.title}
+                </div>
+              ))}</Typography>
               <Title sx={{display: { xs: 'none', md: 'block' } }}>Title</Title>
             </Box>
             <Typography sx={{ display: { xs: 'none', md: 'block' } }}>Price</Typography>
@@ -37,17 +63,18 @@ const Cart = () => {
             <Typography>Remove</Typography>
           </HeaderContainer>
           <ProductBox>
-            {kid.map((ki, i) => (
+            {products.map((product, i) => (
+             
               <Box sx={{ flexDirection: 'column', justifyContent: 'space-around', gap: '5px' }} key={i}>
                 <StyledDivider/>
                 <ProductContainer>
                   <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '50px' }}>
-                    <StyledCardMedia image={ki.image} alt="img" />
-                    <Title sx={{display: { xs: 'none', md: 'block' } }}>{ki.title}</Title>
+                    <StyledCardMedia image={`${img_url}${product.image}`} alt="img" />
+                    <Title sx={{display: { xs: 'none', md: 'block' } }}>{product.title}</Title>
                   </Box>
-                  <Typography sx={{ display: { xs: 'none', md: 'block' } }}>${ki.newprice}</Typography>
+                  <Typography sx={{ display: { xs: 'none', md: 'block' } }}>${product.newPrice}</Typography>
                   <QuantityContainer>2</QuantityContainer>
-                  <Typography>${ki.newprice}</Typography>
+                  <Typography>${product.newPrice}</Typography>
                   <Typography>X</Typography>
                 </ProductContainer>
               </Box>
@@ -62,7 +89,7 @@ const Cart = () => {
               <Box>
                 <SubtotalContainer>
                   <Typography>Subtotal</Typography>
-                  <Typography>$301</Typography>
+                  <Typography>${products.reduce((total, product) => total + (product.newPrice), 0)}</Typography>
                 </SubtotalContainer>
                 <Divider />
               </Box>
@@ -76,22 +103,22 @@ const Cart = () => {
                 </Box>
                 <TotalContainer>
                   <Typography>Total</Typography>
-                  <Typography>$301</Typography>
+                  <Typography>${products.reduce((total, product) => total + (product.newPrice), 0)}</Typography>
                 </TotalContainer>
               </Box>
             </Box>
           </CartTotalsContainer>
-          <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '100px' }}>
+          <PromoBox>
             <PromoCodeContainer>
               <PromoCodeText>if you have a promo code, Enter it here</PromoCodeText>
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <StyledBox>
                 <StyledTextField type="text" placeholder="promo code" />
                 <SubmitButton>
                   <Typography>Submit</Typography>
                 </SubmitButton>
-              </Box>
+              </StyledBox>
             </PromoCodeContainer>
-          </Box>
+          </PromoBox>
         </CartContainer>
       </Container>
     </>

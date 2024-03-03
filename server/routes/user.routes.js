@@ -14,7 +14,7 @@ userRouter.post('/signup',async(req,res)=>{
         const hashPassword = await bcrypt.hash(password,12)
         const user =new  User({name,cartData,email,password:hashPassword})
         await user.save()
-        const token= jwt.sign({email:user.email,_id:user._id},'secret')
+        const token= jwt.sign({email:user.email,id:user._id},'secret')
         res.json({result:user,token})
     } catch (error) {
         res.json(error)
@@ -31,7 +31,7 @@ userRouter.post('/signin',async(req,res)=>{
         if (!isPassword) {
            return res.json({message: "invalid credintials!"})
         }
-        const token= jwt.sign({email:existingUser.email,_id:existingUser._id},'secret')
+        const token= jwt.sign({email:existingUser.email,id:existingUser._id},'secret')
         res.json({result:existingUser,token})
     } catch (error) {
         res.json(error)

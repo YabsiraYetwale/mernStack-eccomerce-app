@@ -34,7 +34,7 @@ const WomenCategories = () => {
   }
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <Container>{<CircularProgress />}</Container>
   }
 
   return (

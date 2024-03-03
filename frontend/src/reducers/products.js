@@ -1,9 +1,9 @@
-import { CREATE, DELETE, END_LOADNG, FETCH_ALL, FETCH, START_LOADNG, UPDATE } from "../components/actionTypes";
+import { CREATE, DELETE, END_LOADING, FETCH_ALL, FETCH, START_LOADING, UPDATE} from "../components/actionTypes";
 const products=(state={isLoading:true,products:[]},action)=>{
     switch (action.type) {
-        case START_LOADNG:
+        case START_LOADING:
            return {...state,isLoading:true}
-        case END_LOADNG:
+        case END_LOADING:
            return {...state,isLoading:false}
         case CREATE:
            return {...state,products:[...state.products,action.payload]}

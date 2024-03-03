@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchProduct, updateProduct } from '../actions/product'

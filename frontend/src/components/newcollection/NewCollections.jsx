@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { Box, CircularProgress, Divider, Typography } from '@mui/material'
+import { Box, CircularProgress} from '@mui/material'
 import { Container, Heading, CollectionContainer } from './styles';
 import { fetchProducts } from '../../actions/product'
 import { useEffect } from 'react'
@@ -18,7 +18,7 @@ const NewCollections = () => {
   }
 
   if (isLoading) {
-    return 'Loading ...';
+    return <Container>{<CircularProgress/>}</Container>
   }
 
   return (
@@ -26,7 +26,7 @@ const NewCollections = () => {
       <Container>
         <Heading>NEW COLLECTIONS<hr/></Heading>
         <CollectionContainer>
-          {products.map((newCollection, i) => (
+          {products.slice(1).slice(-8).map((newCollection, i) => (
             <Box key={i}>
               <NewCollection newCollection={newCollection} />
             </Box>
