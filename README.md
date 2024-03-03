@@ -1,2 +1,4 @@
 # mernStack-eccomerce-app
-not finished yet still in progress
+frontend deployed link: https://eccomerce-cloth-shop.netlify.app/
+
+server deployed link:  https://mernstack-eccomerce-server.onrender.com/products
