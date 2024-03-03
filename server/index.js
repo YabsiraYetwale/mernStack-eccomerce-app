@@ -1,4 +1,5 @@
 import express from 'express'
+import bodyParser from 'body-parser';
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
@@ -6,9 +7,10 @@ import userRouter from './routes/user.routes.js'
 import productRouter from './routes/product.routes.js'
 
 const app=express()
+app.use(bodyParser.json({ limit: '30mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors())
 app.use('/images',express.static('upload/images'))
-app.use(express.json())
 app.use('/users',userRouter)
 app.use('/products',productRouter)
 dotenv.config()
