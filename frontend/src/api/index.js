@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API=axios.create({baseURL:'http://localhost:4000'})
+const API=axios.create({baseURL:'https://mernstack-eccomerce-server.onrender.com/'})
 
 API.interceptors.request.use((req)=>{
     if (localStorage.getItem("user-auth")){
@@ -13,7 +13,7 @@ export const signUpUser=(user)=> API.post('/users/signup',user)
 export const signInUser=(user)=> API.post('/users/signin',user)
 export const fetchUsers=()=> API.get('/users')
 
-export const img_url='http://localhost:4000/images/'
+export const img_url='https://mernstack-eccomerce-server.onrender.com/images/'
 
 export const createProduct=(product)=> API.post('/products',product)
 export const fetchProducts=()=> API.get('/products')

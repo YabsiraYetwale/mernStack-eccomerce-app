@@ -15,7 +15,7 @@ const Category = ({post}) => {
      <CardActionArea>
        <Link to={`/product/${post?._id}`}>
          <StyledCardMedia
-           image={`${post?.image}`}
+           image={`${img_url}${post?.image}`}
            alt="img"
          />
        </Link>
