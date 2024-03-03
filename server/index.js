@@ -14,15 +14,11 @@ app.use('/images',express.static('upload/images'))
 app.use('/users',userRouter)
 app.use('/products',productRouter)
 dotenv.config()
-const PORT=process.env.PORT || 4000
-const MONGODB_URL=process.env.MONGODB_URL
 
+const PORT = process.env.PORT|| 4000;
+const MONGODB_URL='mongodb+srv://yabsirayetwale:1234@cloth-shop.vo6yfy6.mongodb.net/?retryWrites=true&w=majority&appName=cloth-shop'
 
-mongoose.connect(MONGODB_URL).then(()=>{
-    try{
-    app.listen(PORT,()=>{
-    console.log(`server listen on ${PORT}`)})
-    }catch(err){
-        console.log(`${err}did not connect`)
-    }
-})
+mongoose.connect(MONGODB_URL)
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
