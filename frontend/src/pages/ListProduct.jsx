@@ -16,20 +16,16 @@ import {
 
 const ListProduct = () => {
   const { products, isLoading } = useSelector((state) => state.products);
+  const user = JSON.parse(localStorage.getItem("user-auth"));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-
-  if (!products) {
-    return null;
-  }
-
   if (isLoading) {
     return <Container>{<CircularProgress/>}</Container>
   }
-const categoryCounts = products.reduce((counts, product) => {
+const categoryCounts = products?.reduce((counts, product) => {
   counts[product.category] = (counts[product.category] || 0) + 1;
   return counts;
 }, {});
@@ -37,6 +33,10 @@ const categoryCounts = products.reduce((counts, product) => {
   return (
     <>
       <Container>
+        {!products?.length ? 
+      <Container>no products</Container>
+
+        :<>
         <Header>
         <Box sx={{  display:'flex',
     justifyContent:' space-around',
@@ -85,11 +85,12 @@ const categoryCounts = products.reduce((counts, product) => {
                 </Typography>
                 <Typography>${product.newPrice}</Typography>
                 <Typography>{product.category}</Typography>
+                {user?.result &&
                 <Typography
                   sx={{ color: 'red', cursor: 'pointer' }}
                   onClick={() => dispatch(deleteProducts(product._id))}
                 ><Delete />
-                </Typography>
+                </Typography>}
               </ProductItem>
             </Box>
           ))}
@@ -130,7 +131,7 @@ const categoryCounts = products.reduce((counts, product) => {
             </Box>
           </Box>
         </Box>
-      </TotalsContainer>
+      </TotalsContainer></>}
       </Container>
     </>
   )

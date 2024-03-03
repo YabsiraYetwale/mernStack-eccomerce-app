@@ -6,6 +6,7 @@ import { img_url } from "../api";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import {
   Container,
+  CardBox,
   ImageContainer,
   ImageWrapper,
   Image,
@@ -31,27 +32,13 @@ const Detail = () => {
     dispatch(fetchProduct(id));
   }, [dispatch, id]);
 
-  if (!product) {
-    return null;
-  }
-
-  if (isLoading) {
+  if (isLoading || !product) {
     return <Container>{<CircularProgress />}</Container>;
   }
   return (
     <>
       <Container>
-        <Box
-          sx={{
-            display: "flex",
-            "@media(max-width:900px)": {
-              flexDirection: "column",
-              position: "relative",
-              right: "70px",
-            },
-            gap: "150px",
-          }}
-        >
+        <CardBox>
           <ImageContainer>
             <ImageWrapper>
               <Image image={`${img_url}${product?.image}`} alt="img" />
@@ -114,19 +101,19 @@ const Detail = () => {
               </ActionButton>
             )}
           </Box>
-        </Box>
+        </CardBox>
+        {user?.result && 
         <ActionButtonsWrapper>
           <StyledLink to={`/editProduct/${product?._id}`}>
             <StyledButton>EDIT</StyledButton>
           </StyledLink>
-          {user?.result && (
             <StyledButton1
               onClick={() => dispatch(deleteProduct(product?._id, history))}
             >
               DELETE
             </StyledButton1>
-          )}
         </ActionButtonsWrapper>
+        }
         <InfoBox>
           <Typography sx={{ fontWeight: "bolder", fontSize: "20px" }}>
             PRODUCT DETAILS

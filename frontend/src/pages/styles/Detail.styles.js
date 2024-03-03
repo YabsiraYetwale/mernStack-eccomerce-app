@@ -7,6 +7,15 @@ export const Container = styled(Box)({
   gap: "20px",
   padding: "140px 100px",
 });
+export const CardBox = styled(Box)({
+  display: "flex",
+    gap: "150px",
+  "@media(max-width:900px)": {
+    flexDirection: "column",
+    position: "relative",
+    right: "70px",
+  },
+});
 
 export const ImageContainer = styled(Box)({
   display: "flex",

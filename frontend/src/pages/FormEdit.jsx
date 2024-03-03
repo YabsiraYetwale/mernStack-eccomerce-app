@@ -130,7 +130,7 @@ export const FormEdit = ({curId,setCurId}) => {
             </UploadWrapper>
 
             <SubmitButton variant="contained" size="large" type="submit">
-              Submit
+              Update
             </SubmitButton>
           </Form>
         </FormWrapper>

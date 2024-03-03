@@ -8,6 +8,7 @@ import {
   START_LOADING,
   END_LOADING,
   ADD_TO_CART,
+  REMOVE_FROM_CART,
 } from "../components/actionTypes";
 
 export const createProduct = (product, history) => async (dispatch) => {
@@ -79,9 +80,19 @@ export const addToCart = (productId, quantity,history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.addToCart(productId, quantity);
-    console.log(data);
     dispatch({ type: ADD_TO_CART, payload: data });
     history(`/product/${productId}`);
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const removeFromCart = (productId,history) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.removeFromCart(productId);
+    dispatch({ type: REMOVE_FROM_CART, payload: data });
+    history('/cart')
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);

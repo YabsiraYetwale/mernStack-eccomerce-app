@@ -26,8 +26,8 @@ const FormCreate = () => {
     title: '',
     description: '',
     category: '',
-    oldPrice: null,
-    newPrice: null,
+    oldPrice:0,
+    newPrice:0,
   });
   const [image, setImage] = useState();
 
@@ -57,9 +57,9 @@ const FormCreate = () => {
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
             />
-
+  
             <InputField
-             required
+              required
               variant="outlined"
               label="Description"
               fullWidth
@@ -68,10 +68,10 @@ const FormCreate = () => {
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
-
+  
             <SelectWrapper>
               <PriceInput
-              required
+                required
                 variant="outlined"
                 type="number"
                 label="Price"
@@ -79,9 +79,9 @@ const FormCreate = () => {
                 value={formData.oldPrice}
                 onChange={(e) => setFormData({ ...formData, oldPrice: e.target.value })}
               />
-
+  
               <PriceInput
-              required
+                required
                 variant="outlined"
                 type="number"
                 label="Offer Price"
@@ -89,7 +89,7 @@ const FormCreate = () => {
                 onChange={(e) => setFormData({ ...formData, newPrice: e.target.value })}
               />
             </SelectWrapper>
-
+  
             <CategorySelect
               style={{ height: '30px' }}
               name="category"
@@ -101,16 +101,16 @@ const FormCreate = () => {
               <option value="women">women</option>
               <option value="kids">kids</option>
             </CategorySelect>
-
+  
             <UploadWrapper>
               <UploadLabel htmlFor="file">
                 <Box sx={{ color: '#3e8499', fontWeight: 'bold', cursor: 'pointer' }}>upload*</Box>
               </UploadLabel>
-              <input  required type="file" onChange={(e) => setImage(e.target.files[0])} />
+              <input required type="file" onChange={(e) => setImage(e.target.files[0])} />
             </UploadWrapper>
-
+  
             <SubmitButton variant="contained" size="large" type="submit">
-              Submit
+              Create
             </SubmitButton>
           </Form>
         </FormWrapper>

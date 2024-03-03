@@ -37,8 +37,6 @@ export const fetchUsers = () => async (dispatch) => {
   try {
     const { data } = await api.fetchUsers();
     dispatch({ type: 'USER', payload: data });
-    console.log(data);
-
   } catch (error) {
     console.log(error);
   }

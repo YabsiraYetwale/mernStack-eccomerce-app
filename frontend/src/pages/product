@@ -1,4 +1,0 @@
-{/* ${products.reduce((total, product) => total + product.newPrice, 0)} */}
-// {product?.sizes.map((size) => (
-//     <SizeBox key={size}>{size}</SizeBox>
-//   ))}

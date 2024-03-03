@@ -1,7 +1,7 @@
 import { Box,CircularProgress,Divider,Typography } from '@mui/material'
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../actions/product';
+import { useNavigate } from 'react-router-dom';
+import {removeFromCart } from '../actions/product';
 import { img_url } from '../api';
 import {
   Container,
@@ -25,36 +25,32 @@ import {
   CartContainer,
 } from './styles/Cart.styles';
 const Cart = () => {
-  const { products, isLoading} = useSelector((state) => state.products);
+  const {isLoading} = useSelector((state) => state.products);
   
 const dispatch = useDispatch();
+const history = useNavigate();
 
-useEffect(() => {
-  dispatch(fetchProducts());
-}, [dispatch]);
 
-if (!products) {
-  return null;
-}
+
 
 if (isLoading) {
   return <Container>{<CircularProgress/>}</Container>
 }
 const user = JSON.parse(localStorage.getItem('user-auth'));
-
+const totalPrice = user?.result?.cart.reduce((total, product) => {
+  const productPrice = product.quantity * product.productId.newPrice;
+  return total + productPrice;
+}, 0);
   return (
     <>
       <Container>
+       {!user?.result?.cart.length ? 
+       <Container>no products added to cart </Container>
+       :<>
         <SectionContainer>
           <HeaderContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '65px' }}>
-              <Typography>{user.result.cart.map((product)=>(
-                <div>
-                 id: {product.productId}
-                 quantity:{product.quantity}
-                 title:{product.title}
-                </div>
-              ))}</Typography>
+              <Typography>Product</Typography>
               <Title sx={{display: { xs: 'none', md: 'block' } }}>Title</Title>
             </Box>
             <Typography sx={{ display: { xs: 'none', md: 'block' } }}>Price</Typography>
@@ -63,19 +59,19 @@ const user = JSON.parse(localStorage.getItem('user-auth'));
             <Typography>Remove</Typography>
           </HeaderContainer>
           <ProductBox>
-            {products.map((product, i) => (
+            {user?.result?.cart?.map((product, i) => (
              
               <Box sx={{ flexDirection: 'column', justifyContent: 'space-around', gap: '5px' }} key={i}>
                 <StyledDivider/>
                 <ProductContainer>
                   <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: '50px' }}>
-                    <StyledCardMedia image={`${img_url}${product.image}`} alt="img" />
-                    <Title sx={{display: { xs: 'none', md: 'block' } }}>{product.title}</Title>
+                    <StyledCardMedia image={`${img_url}${product.productId.image}`} alt="img" />
+                    <Title sx={{display: { xs: 'none', md: 'block' } }}>{product.productId.title}</Title>
                   </Box>
-                  <Typography sx={{ display: { xs: 'none', md: 'block' } }}>${product.newPrice}</Typography>
-                  <QuantityContainer>2</QuantityContainer>
-                  <Typography>${product.newPrice}</Typography>
-                  <Typography>X</Typography>
+                  <Typography sx={{ display: { xs: 'none', md: 'block' } }}>${product.productId.newPrice}</Typography>
+                  <QuantityContainer>{product.quantity}</QuantityContainer>
+                  <Typography>${ product.quantity * product.productId.newPrice}</Typography>
+                  <Typography onClick={()=> dispatch(removeFromCart(product.productId._id,history))}>X</Typography>
                 </ProductContainer>
               </Box>
             ))}
@@ -89,7 +85,7 @@ const user = JSON.parse(localStorage.getItem('user-auth'));
               <Box>
                 <SubtotalContainer>
                   <Typography>Subtotal</Typography>
-                  <Typography>${products.reduce((total, product) => total + (product.newPrice), 0)}</Typography>
+                  <Typography>${totalPrice}</Typography>
                 </SubtotalContainer>
                 <Divider />
               </Box>
@@ -103,7 +99,7 @@ const user = JSON.parse(localStorage.getItem('user-auth'));
                 </Box>
                 <TotalContainer>
                   <Typography>Total</Typography>
-                  <Typography>${products.reduce((total, product) => total + (product.newPrice), 0)}</Typography>
+                  <Typography>${totalPrice}</Typography>
                 </TotalContainer>
               </Box>
             </Box>
@@ -120,6 +116,7 @@ const user = JSON.parse(localStorage.getItem('user-auth'));
             </PromoCodeContainer>
           </PromoBox>
         </CartContainer>
+        </>}
       </Container>
     </>
   );

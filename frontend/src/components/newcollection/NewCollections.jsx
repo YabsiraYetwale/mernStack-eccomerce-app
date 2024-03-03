@@ -13,7 +13,7 @@ const NewCollections = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (!products) {
+  if (!products?.length) {
     return null;
   }
 
@@ -23,10 +23,10 @@ const NewCollections = () => {
 
   return (
     <>
-      <Container>
-        <Heading>NEW COLLECTIONS<hr/></Heading>
+      <Container id='newCollection'>
+       <Heading>NEW COLLECTIONS<hr/></Heading>
         <CollectionContainer>
-          {products.slice(1).slice(-8).map((newCollection, i) => (
+          {products.slice(0).slice(-7).map((newCollection, i) => (
             <Box key={i}>
               <NewCollection newCollection={newCollection} />
             </Box>

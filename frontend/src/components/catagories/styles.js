@@ -47,7 +47,6 @@ export const DiscountBox = styled(Box)({
 export const DiscountText = styled(Box)({
   fontSize:' 60px',
   fontWeight:' bolder',
-
   "@media (max-width: 620px)": {
     fontSize:' 30px',
   }

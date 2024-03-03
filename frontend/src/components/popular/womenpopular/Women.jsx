@@ -3,10 +3,11 @@ import { Box, CircularProgress} from '@mui/material'
 import { WomenContainer,Heading, ProductContainer} from './styles';
 import { fetchProducts } from '../../../actions/product'
 import { useEffect } from 'react'
-import Woman from './Woman'
+import Category from '../../catagories/category/Category'
 
 const Women = () => {
   const { products, isLoading } = useSelector((state) => state.products);
+  const womenProducts=products?.filter((product) => product.category === 'women')
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,16 +24,17 @@ const Women = () => {
 
   return (
     <>
-      <WomenContainer>
+     {!womenProducts?.length ? '' :
+     <WomenContainer>
         <Heading>POPULAR IN WOMEN<hr/></Heading>
         <ProductContainer>
-          {products.slice(0,7).map((post, i) => (
+          {womenProducts.slice(0,4).map((post, i) => (
             <Box key={i}>
-              <Woman post={post} />
+              <Category post={post} />
             </Box>
           ))}
         </ProductContainer>
-      </WomenContainer>
+      </WomenContainer>}
     </>
   );
 };

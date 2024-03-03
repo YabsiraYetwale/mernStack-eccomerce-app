@@ -46,7 +46,7 @@ productRouter.get('/:id',async(req,res)=>{
 
     }
 })
-productRouter.patch('/:id',upload.single('image'),async(req,res)=>{
+productRouter.patch('/:id',Auth,upload.single('image'),async(req,res)=>{
     try{
        const {id}= req.params
        const {...product}= req.body
@@ -71,53 +71,115 @@ productRouter.delete('/:id',Auth,async(req,res)=>{
         res.json(err)
     }
 })
-
-productRouter.post('/add-to-cart/:productId',Auth, async (req, res) => {
-    try {
-      const { productId } = req.params;
-      const { quantity } = req.body;
-      const userId = req.userId;
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
+productRouter.post('/add-to-cart/:productId', Auth, async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const { quantity } = req.body;
+    const userId = req.userId;
+    const user = await User.findById(userId).populate('cart.productId');
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    const existingProduct = user.cart.find(item => item.productId._id.toString() === productId);
+    
+    if (existingProduct) {
+      existingProduct.quantity += quantity || 1;
+    } else {
+      const product = await Product.findById(productId);
+      
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
       }
-   const existingProduct = user.cart.find(item => item.productId.toString() === productId);
-      if (existingProduct) {
-        existingProduct.quantity += quantity || 1;
+      
+      const cartItem = {
+        productId: product,
+        quantity: quantity || 1,
+        totalQuantity: 0
+      };
+      
+      user.cart.push(cartItem);
+    }
+        let totalQuantity = 0;
+    user.cart.forEach(item => {
+      totalQuantity += item.quantity;
+    });
+        user.cart.forEach(item => {
+      item.totalQuantity = totalQuantity;
+    });
+    
+    await user.save();
+    
+    const token = jwt.sign({ email: user.email, id: user._id }, 'secret');
+    
+    res.json({ result: user,totalQuantity, token});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+productRouter.post('/remove-from-cart/:productId', Auth, async (req, res) => {
+  try {
+    const { productId } = req.params;
+    const userId = req.userId;
+    const user = await User.findById(userId).populate('cart.productId');
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    const existingProductIndex = user.cart.findIndex(item => item.productId._id.toString() === productId);
+    
+    if (existingProductIndex !== -1) {
+      const existingProduct = user.cart[existingProductIndex];
+      
+      if (existingProduct.quantity > 1) {
+        existingProduct.quantity -= 1;
       } else {
-        user.cart.push({ productId, quantity: quantity || 1 });
+        user.cart.splice(existingProductIndex, 1);
       }
-      await user.save();
-      const token= jwt.sign({email:user.email,id:user._id},'secret')
-        res.json({result:user,token})
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: 'Internal server error' });
+    } else {
+      return res.status(404).json({ message: 'Product not found in cart' });
     }
-  });
+    
+    let totalQuantity = 0;
+    user.cart.forEach(item => {
+      totalQuantity += item.quantity;
+    });
+    
+    user.cart.forEach(item => {
+      item.totalQuantity = totalQuantity;
+    });
+    
+    await user.save();
+    
+    const token = jwt.sign({ email: user.email, id: user._id }, 'secret');
+    
+    res.json({ result: user,totalQuantity , token});
+      
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+productRouter.get('/user/cart', Auth, async (req, res) => {
+  try {
+    const userId = req.userId;
+    const user = await User.findById(userId).populate('cart.productId');
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    res.json(user.cart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
-  productRouter.get('/cart/quantity', Auth, async (req, res) => {
-    try {
-      const userId = req.userId;
-  
-      const user = await User.findById(userId);
-  
-      if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-  
-      let quantity = 0;
-  
-      user.cart.forEach(item => {
-        quantity += item.quantity;
-      });
-  
-      res.status(200).json({ quantity });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  });
+ 
 
 export default productRouter
 

@@ -45,20 +45,9 @@ const Navbar = () => {
   useEffect(() => {
     handleMenuClose();
   }, [location.pathname]);
-  const [cartQuantity, setCartQuantity] = useState(0);
-
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user-auth")));
-     // Calculate the cart quantity
-     let totalQuantity = 0;
-     if (user && user.result && user.result.cart) {
-       user.result.cart.forEach((item) => {
-         totalQuantity += item.quantity;
-       });
-     }
-  // Set the cart quantity in the state
-     setCartQuantity(totalQuantity);
-  }, [location,cartQuantity,setCartQuantity]);
+  }, [location]);
   const handleLogout = () => {
     dispatch({ type: LOGOUT });
     navigate("/auth");
@@ -92,9 +81,10 @@ const Navbar = () => {
               <CustomLink to="/listProduct">Products</CustomLink>
             </CustomToolbar>
             <CustomTypographyBox>
-              <CustomTypographyAddProduct>
+            {user?.result && 
+            <CustomTypographyAddProduct>
                 <CustomLink to="/addproduct">+</CustomLink>
-              </CustomTypographyAddProduct>
+              </CustomTypographyAddProduct>}
               {user?.result ? (
               <CustomTypographyAddProduct onClick={handleMenuOpen}>
                 {user?.result?.name?.charAt(0)}
@@ -108,7 +98,7 @@ const Navbar = () => {
               <CustomLink to={'/cart'}>
                 <CustomIconButton>
                 <CustomCardMediaCart image={cart} alt="cart" />
-                <CustomTypographyCartCount>{user?.result ? cartQuantity :0}</CustomTypographyCartCount>
+                <CustomTypographyCartCount>{user?.result?.cart?.length > 0 ? user?.result?.cart[0]?.totalQuantity : 0}</CustomTypographyCartCount>
                 </CustomIconButton>
               </CustomLink>
             </CustomTypographyBox>

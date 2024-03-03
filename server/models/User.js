@@ -14,11 +14,15 @@ const userSchema = new mongoose.Schema({
     {
       productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'productModel',
+        ref: 'Products',
       },
       quantity: {
         type: Number,
         default: 1,
+      },
+      totalQuantity: {
+        type: Number,
+        default: 0,
       },
     },
   ],
@@ -31,6 +35,6 @@ const userSchema = new mongoose.Schema({
 }
 });
 
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('Users', userSchema);
 
 export default User;

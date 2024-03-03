@@ -16,6 +16,7 @@ export const TextContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   padding: '30px 0',
+  color:' #c037c0',
   gap: '10px',
 });
 export const ImageBox = styled('div')({
@@ -51,7 +52,10 @@ export const Button = styled('div')({
     width: '140px',
   },
 });
-
+export const CustomLink = styled('a')({
+  textDecoration: 'none',
+  color:"#fff",
+});
 export const Image = styled('img')({
         width:'600px',
         height:'400px',
