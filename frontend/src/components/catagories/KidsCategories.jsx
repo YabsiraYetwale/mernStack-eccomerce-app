@@ -1,4 +1,4 @@
-import Category from "./Category/Category";
+import Category from "./category/Category";
 import k44 from "../../assets/k44.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../actions/product";

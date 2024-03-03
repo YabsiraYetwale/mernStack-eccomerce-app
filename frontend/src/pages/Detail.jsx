@@ -41,14 +41,17 @@ const Detail = () => {
         <CardBox>
           <ImageContainer>
             <ImageWrapper>
-              <Image image={product?.image} alt="img" />
-              <Image image={product?.image} alt="img" />
-              <Image image={product?.image} alt="img" />
-              <Image image={product?.image} alt="img" />
+              <Image image={`${img_url}${product?.image}`} alt="img" />
+              <Image image={`${img_url}${product?.image}`} alt="img" />
+              <Image image={`${img_url}${product?.image}`} alt="img" />
+              <Image image={`${img_url}${product?.image}`} alt="img" />
             </ImageWrapper>
             <Box>
-              image:::<MainImage
-                image={product?.image}
+              <MainImage
+                image={
+                  `${img_url}${product?.image}` ||
+                  "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+                }
                 alt="img"
               />
             </Box>

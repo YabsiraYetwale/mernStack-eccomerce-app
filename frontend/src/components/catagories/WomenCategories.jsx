@@ -1,4 +1,4 @@
-import Category from "./Category/Category";
+import Category from "./category/Category";
 import w10 from "../../assets/w10.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../actions/product";
