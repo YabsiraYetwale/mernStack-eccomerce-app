@@ -55,4 +55,9 @@ User.findOneAndUpdate(
   adminData,
   { upsert: true, new: true }
 )
- 
+.then((updatedAdmin) => {
+  // console.log('Admin saved/updated successfully:', updatedAdmin);
+})
+.catch((error) => {
+  console.error('error', error);
+});
