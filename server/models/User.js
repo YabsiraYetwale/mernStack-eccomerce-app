@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import bcrypt from 'bcrypt'
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
   },
+  role:{
+    type:String,
+    default:'user'
+},
   cart: [
     {
       productId: {
@@ -38,3 +42,17 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('Users', userSchema);
 
 export default User;
+
+const adminData = {
+  name: 'Yabsira Yetwale',
+  email: 'yabsira.yetwale@gmail.com',
+  role:'admin',
+  password: bcrypt.hashSync('1234', 6),
+};
+
+User.findOneAndUpdate(
+  { email: adminData.email },
+  adminData,
+  { upsert: true, new: true }
+)
+ 

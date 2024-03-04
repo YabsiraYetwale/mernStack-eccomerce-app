@@ -17,6 +17,7 @@ import {
 import logo from '../../assets/logo.jpg';
 
 const Footer = () => {
+  const user = JSON.parse(localStorage.getItem("user-auth"));
   const handleClick = () => {
     window.scrollTo(0, 0);
   };
@@ -38,7 +39,7 @@ const Footer = () => {
             <FooterLink to="/catagory/men">Men's</FooterLink>
             <FooterLink to="/catagory/women">Women's</FooterLink>
             <FooterLink to="/catagory/kids">Kid's</FooterLink>
-            <FooterLink to="/listProduct">Products</FooterLink>
+            {user?.result?.role ==='admin' && <FooterLink to="/listProduct">Products</FooterLink>}
           </LinkContainer>
           <SocialMediaContainer>
             <FacebookOutlined />

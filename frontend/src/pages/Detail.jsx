@@ -102,7 +102,9 @@ const Detail = () => {
             )}
           </Box>
         </CardBox>
-        {user?.result && 
+        {user?.result?._id===product.creator
+        ||  user?.result?.role ==='admin'
+        && 
         <ActionButtonsWrapper>
           <StyledLink to={`/editProduct/${product?._id}`}>
             <StyledButton>EDIT</StyledButton>
