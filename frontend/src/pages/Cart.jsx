@@ -72,7 +72,7 @@ const totalPrice = user?.result?.cart.reduce((total, product) => {
                   <Typography sx={{ display: { xs: 'none', md: 'block' } }}>${product.productId.newPrice}</Typography>
                   <QuantityContainer>{product.quantity}</QuantityContainer>
                   <Typography>${ product.quantity * product.productId.newPrice}</Typography>
-                  <Typography onClick={()=> dispatch(removeFromCart(product.productId._id,history))}>X</Typography>
+                  <Typography sx={{cursor:'pointer',}} onClick={()=> dispatch(removeFromCart(product.productId._id,history))}>X</Typography>
                 </ProductContainer>
               </Box>
             ))}

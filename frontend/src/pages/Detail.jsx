@@ -1,5 +1,5 @@
-import { useEffect} from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect,useState} from "react";
+import { useLocation,useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, fetchProduct, addToCart } from "../actions/product";
 import { img_url } from "../api";
@@ -23,10 +23,17 @@ import {
 } from "./styles/Detail.styles";
 const Detail = () => {
   const { product, isLoading } = useSelector((state) => state.products);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user-auth"))
+  );
   const dispatch = useDispatch();
   const { id } = useParams();
   const history = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user-auth"));
+  const location = useLocation();
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user-auth")));
+  }, [location]);
 
   useEffect(() => {
     dispatch(fetchProduct(id));
@@ -102,10 +109,9 @@ const Detail = () => {
             )}
           </Box>
         </CardBox>
-        {user?.result?._id===product.creator
-        ||  user?.result?.role ==='admin'
-        && 
-        <ActionButtonsWrapper>
+        {user?.result?.role ==='admin' || user?.result?._id  === product?.creator
+        ? 
+        (<ActionButtonsWrapper>
           <StyledLink to={`/editProduct/${product?._id}`}>
             <StyledButton>EDIT</StyledButton>
           </StyledLink>
@@ -114,7 +120,7 @@ const Detail = () => {
             >
               DELETE
             </StyledButton1>
-        </ActionButtonsWrapper>
+        </ActionButtonsWrapper>):('' )
         }
         <InfoBox>
           <Typography sx={{ fontWeight: "bolder", fontSize: "20px" }}>

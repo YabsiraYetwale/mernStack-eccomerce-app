@@ -117,9 +117,9 @@ const Navbar = () => {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+              {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
               <MenuItem onClick={handleMenuClose}>My Account</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Settings</MenuItem> */}
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </CustomMenu>
           </WrapperBox>
