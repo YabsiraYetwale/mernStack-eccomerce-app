@@ -113,8 +113,14 @@ export const ActionButtonsWrapper = styled(Box)({
   position: "relative",
   top: "-70px",
   "@media(max-width:900px)":{
-    top: "-400px",
-    right:'220px',
+    position:"absolute",
+    top: "580px",
+    left:'-50px',
+},
+  "@media(max-width:620px)":{
+    position:"absolute",
+    top: "720px",
+    right:'100px',
 },
   
 });

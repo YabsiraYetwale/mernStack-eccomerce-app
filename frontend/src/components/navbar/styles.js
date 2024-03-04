@@ -54,7 +54,7 @@ export const WrapperBox = styled(Toolbar)({
     "@media(max-width:900px)":{
     position: 'absolute',
     left: '0px',
-    top: '57px',
+    top: '60px',
     flexDirection: 'column-reverse',
     background:'#fff', 
     height: '80vh',
@@ -69,6 +69,8 @@ export const CustomToolbar = styled(Toolbar)({
     gap: "40px",
     "@media(max-width:900px)":{
       flexDirection: 'column',
+      position: 'relative',
+      top: '-80px',
       }
 });
 
@@ -82,6 +84,10 @@ export const CustomTypographyBox = styled(Box)({
   justifyContent: "center",
   alignItems: "center",
   gap: "20px",
+      "@media(max-width:900px)":{
+    position: 'relative',
+    top: '-80px',
+    }
 });
 export const CustomTypographyAddProduct = styled(Typography)({
   cursor: 'pointer',
