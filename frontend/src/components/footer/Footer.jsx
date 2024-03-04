@@ -39,7 +39,7 @@ const Footer = () => {
             <FooterLink to="/catagory/men">Men's</FooterLink>
             <FooterLink to="/catagory/women">Women's</FooterLink>
             <FooterLink to="/catagory/kids">Kid's</FooterLink>
-            {user?.result?.role ==='admin' && <FooterLink to="/listProduct">Products</FooterLink>}
+            {user?.result?.role === 'admin' && <FooterLink to="/listProduct">Products</FooterLink>}
           </LinkContainer>
           <SocialMediaContainer>
             <FacebookOutlined />

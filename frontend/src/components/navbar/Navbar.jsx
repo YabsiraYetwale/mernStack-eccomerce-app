@@ -78,7 +78,7 @@ const Navbar = () => {
               <CustomLink to="/catagory/men">Men's</CustomLink>
               <CustomLink to="/catagory/women">Women's</CustomLink>
               <CustomLink to="/catagory/kids">Kid's</CustomLink>
-              {user?.result?.role ==='admin' && <CustomLink to="/listProduct">Products</CustomLink>}
+              {user?.result?.role === 'admin' && <CustomLink to="/listProduct">Products</CustomLink>}
             </CustomToolbar>
             <CustomTypographyBox>
             {user?.result && 
