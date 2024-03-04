@@ -5,6 +5,7 @@ import { fetchProducts } from "../../actions/product";
 import { useState, useEffect } from "react";
 import { CircularProgress, Typography, Box } from "@mui/material";
 import {
+  LoadingContainer,
   Container,
   GradientBox,
   InnerBox,
@@ -91,7 +92,7 @@ const MenCategories = () => {
   };
 
   if (isLoading || !products) {
-    return <Container>{<CircularProgress />}</Container>;
+    return <LoadingContainer>{<CircularProgress />}</LoadingContainer>;
   }
 
   return (

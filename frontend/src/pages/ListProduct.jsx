@@ -5,6 +5,7 @@ import { Delete } from '@mui/icons-material';
 import { fetchProducts, deleteProducts } from '../actions/product';
 import { img_url } from '../api';
 import {
+  LoadingContainer,
   Container,
   Header,
   ProductContainer,
@@ -23,7 +24,7 @@ const ListProduct = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
   if (isLoading) {
-    return <Container>{<CircularProgress/>}</Container>
+    return <LoadingContainer>{<CircularProgress/>}</LoadingContainer>
   }
 const categoryCounts = products?.reduce((counts, product) => {
   counts[product.category] = (counts[product.category] || 0) + 1;

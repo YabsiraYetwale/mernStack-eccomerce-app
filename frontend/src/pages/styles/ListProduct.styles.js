@@ -1,5 +1,12 @@
 import { styled } from '@mui/material/styles';
 import { Box} from '@mui/material';
+
+export const LoadingContainer = styled(Box)({
+  display:' flex',
+  justifyContent:' center',
+  alignItems:' center',
+  padding:' 100px 0px 400px 0px',
+});
 export const Container = styled(Box)({
   display: 'flex',
   justifyContent: 'space-around',

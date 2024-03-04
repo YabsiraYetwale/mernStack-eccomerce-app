@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {removeFromCart } from '../actions/product';
 import { img_url } from '../api';
 import {
+  LoadingContainer,
   Container,
   SectionContainer,
   HeaderContainer,
@@ -34,7 +35,7 @@ const history = useNavigate();
 
 
 if (isLoading) {
-  return <Container>{<CircularProgress/>}</Container>
+  return <LoadingContainer>{<CircularProgress/>}</LoadingContainer>
 }
 const user = JSON.parse(localStorage.getItem('user-auth'));
 const totalPrice = user?.result?.cart.reduce((total, product) => {
