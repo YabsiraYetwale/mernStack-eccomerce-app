@@ -55,20 +55,20 @@ const WomenCategories = () => {
               : b.newPrice - a.newPrice;
           } else if (sortOption === "date") {
             return sortOrder === "asc"
-              ? new Date(a.date) - new Date(b.date)
-              : new Date(b.date) - new Date(a.date);
+              ? new Date(b.date) - new Date(a.date)
+              : new Date(a.date) - new Date(b.date);
           }
         });
         setDisplayedProducts(sortedProducts);
       } else {
-        const getFirstProductsByCategory = (category, count) => {
+        const getLatestProductsByCategory = (category, count) => {
           const filteredProducts = products?.filter(
             (product) => product.category === category
           );
-          return filteredProducts.slice(0, count);
+          return filteredProducts.slice(0).slice(count);
         };
-        const firstProducts = getFirstProductsByCategory("women", 5);
-        const sortedProducts = firstProducts.sort((a, b) => {
+        const latestProducts = getLatestProductsByCategory("women", -5);
+        const sortedProducts = latestProducts.sort((a, b) => {
           if (sortOption === "title") {
             return sortOrder === "asc"
               ? a.title.localeCompare(b.title)
@@ -79,8 +79,8 @@ const WomenCategories = () => {
               : b.newPrice - a.newPrice;
           } else if (sortOption === "date") {
             return sortOrder === "asc"
-              ? new Date(a.date) - new Date(b.date)
-              : new Date(b.date) - new Date(a.date);
+              ? new Date(b.date) - new Date(a.date)
+              : new Date(a.date) - new Date(b.date);
           }
         });
 
