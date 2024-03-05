@@ -56,9 +56,17 @@ export const updateProduct = (id, product, history) => async (dispatch) => {
 export const deleteProduct = (id, history) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
-    await api.deleteProduct(id);
+    const {data}= await api.deleteProduct(id);
     dispatch({ type: DELETE, payload: id });
-    history("/");
+    if(data?.deletedProduct?.category === 'kids'){
+      history("/catagory/kids");
+    }
+    else if(data?.deletedProduct?.category === 'men'){
+      history("/catagory/men");
+    }
+    else{
+      history("/catagory/women");
+    }
     dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);

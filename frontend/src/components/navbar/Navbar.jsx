@@ -95,12 +95,13 @@ const Navbar = () => {
                 <CustomLink to="/auth">Login</CustomLink>
               </CustomTypographyLogin>
             )}
+              {user?.result &&
               <CustomLink to={'/cart'}>
                 <CustomIconButton>
                 <CustomCardMediaCart image={cart} alt="cart" />
                 <CustomTypographyCartCount>{user?.result?.cart?.length > 0 ? user?.result?.cart[0]?.totalQuantity : 0}</CustomTypographyCartCount>
                 </CustomIconButton>
-              </CustomLink>
+              </CustomLink>}
             </CustomTypographyBox>
             <CustomMenu
               id="menu-appbar"

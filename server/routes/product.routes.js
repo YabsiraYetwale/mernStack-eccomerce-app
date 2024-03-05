@@ -66,7 +66,7 @@ productRouter.delete('/:id',Auth,async(req,res)=>{
        if (!deletedProduct) {
        return res.json({message: 'no products with this id'})
        }
-       return res.json({delet:deletedProduct})
+       return res.json({deletedProduct})
     }catch(err){
         res.json(err)
     }
