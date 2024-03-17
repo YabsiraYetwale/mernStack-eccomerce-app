@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react'
+import FileBase from 'react-file-base64'
 import { Box} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -44,18 +45,11 @@ export const FormEdit = ({curId,setCurId}) => {
   const [formData,setFormData]=useState({title:'',description:'',category:'',image:'',oldPrice:0,newPrice:0,})
   const {id}=useParams()
   const {product}=useSelector(state=>state.products)
-  const [image,setImage]=useState()
+
  
   const handleSubmit=(e)=>{
     e.preventDefault()
-    const formdata=new FormData()
-    formdata.append('image',image)
-    formdata.append('title',formData.title)
-    formdata.append('description',formData.description)
-    formdata.append('category',formData.category)
-    formdata.append('oldPrice',formData.oldPrice)
-    formdata.append('newPrice',formData.newPrice)
-    dispatch(updateProduct(curId,formdata,history))
+    dispatch(updateProduct(curId,formData,history))
 
   }
   useEffect(() => {
@@ -126,7 +120,8 @@ export const FormEdit = ({curId,setCurId}) => {
               <UploadLabel htmlFor="file">
                 <Box sx={{ color: '#3e8499', fontWeight: 'bold', cursor: 'pointer' }}>upload*</Box>
               </UploadLabel>
-              <input variant="outlined" type="file" onChange={(e) => setImage(e.target.files[0])} />
+              <FileBase type='file' onDone={({base64})=> setFormData({...formData, image:base64})} />
+
             </UploadWrapper>
 
             <SubmitButton variant="contained" size="large" type="submit">

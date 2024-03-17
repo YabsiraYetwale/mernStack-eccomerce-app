@@ -7,7 +7,6 @@ import {
   StyledPriceContainer,
   StyledOldPriceTypography,
 } from './styles';
-import { img_url } from '../../../api';
 const Category = ({post}) => {
   return (
     <>
@@ -15,7 +14,7 @@ const Category = ({post}) => {
      <CardActionArea>
        <Link to={`/product/${post?._id}`}>
          <StyledCardMedia
-           image={`${img_url}${post?.image}`}
+           image={post?.image}
            alt="img"
          />
        </Link>

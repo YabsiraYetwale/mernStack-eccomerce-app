@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FileBase from 'react-file-base64'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createProduct } from '../actions/product';
@@ -23,24 +24,17 @@ const FormCreate = () => {
   const user = JSON.parse(localStorage.getItem('user-auth'));
 
   let [formData, setFormData] = useState({
+    image:'',
     title: '',
     description: '',
     category: '',
     oldPrice:0,
     newPrice:0,
   });
-  const [image, setImage] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formdata = new FormData();
-    formdata.append('image', image);
-    formdata.append('title', formData.title);
-    formdata.append('description', formData.description);
-    formdata.append('category', formData.category);
-    formdata.append('oldPrice', formData.oldPrice);
-    formdata.append('newPrice', formData.newPrice);
-    dispatch(createProduct(formdata, history));
+    dispatch(createProduct(formData, history));
   };
 
   return (
@@ -106,7 +100,7 @@ const FormCreate = () => {
               <UploadLabel htmlFor="file">
                 <Box sx={{ color: '#3e8499', fontWeight: 'bold', cursor: 'pointer' }}>upload*</Box>
               </UploadLabel>
-              <input required type="file" onChange={(e) => setImage(e.target.files[0])} />
+              <FileBase type='file' onDone={({base64})=> setFormData({...formData, image:base64})} />
             </UploadWrapper>
   
             <SubmitButton variant="contained" size="large" type="submit">

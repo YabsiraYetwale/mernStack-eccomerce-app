@@ -13,8 +13,6 @@ export const signUpUser=(user)=> API.post('/users/signup',user)
 export const signInUser=(user)=> API.post('/users/signin',user)
 export const fetchUsers=()=> API.get('/users')
 
-export const img_url='https://mernstack-eccomerce-server.onrender.com/images/'
-
 export const createProduct=(product)=> API.post('/products',product)
 export const fetchProducts=()=> API.get('/products')
 export const fetchProduct=(id)=> API.get(`/products/${id}`)
